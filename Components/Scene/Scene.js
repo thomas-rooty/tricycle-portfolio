@@ -5,9 +5,7 @@ import {MovementsHandler} from "../Functions/MovementsHandler/MovementsHandler";
 import {Floor} from "./Floor/Floor";
 import {PlayerObject} from "./PlayerObject/PlayerObject";
 import {Tree} from "./Tree/Tree";
-import {EffectComposer, Vignette} from "@react-three/postprocessing";
-import { BlendFunction } from "postprocessing";
-
+import {Effects} from "../Effects/Effects";
 
 const Scene = () => {
     const [meshPosition, setMeshPosition] = useState([0, 0, 0]);
@@ -25,14 +23,7 @@ const Scene = () => {
 
     return (
         <Canvas>
-            <EffectComposer>
-                <Vignette
-                    darkness={-0.75}
-                    offset={1}
-                    offsetDarkness={1}
-                    blendFunction={BlendFunction.NORMAL}
-                />
-            </EffectComposer>
+            <Effects/>
             <CameraObject/>
             <ambientLight intensity={0.10}/>
             <pointLight
