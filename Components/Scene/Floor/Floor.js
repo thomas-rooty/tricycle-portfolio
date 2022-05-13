@@ -1,16 +1,19 @@
+import {useLoader} from "@react-three/fiber";
+
 export const Floor = () => {
+
     return <mesh
         name="floor"
         position={[0, -1, 0]}
         rotation={[0, 0, 0]}
-        scale={[100000, 0.01, 100000]}
+        scale={[10000, 1, 10000]}
+        receiveShadow={true}
+        castShadow={false}
     >
         <boxBufferGeometry attach="geometry" args={[1, 1, 1]}/>
         <meshStandardMaterial
+            color={0xbf8d4e}
             attach="material"
-            color={0x55ffff}
-            roughness={0.5}
-            metalness={0.5}
         />
     </mesh>;
 }
