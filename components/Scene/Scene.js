@@ -6,12 +6,14 @@ import {degToRad} from "three/src/math/MathUtils";
 
 const Scene = () => {
     const [meshPosition, setMeshPosition] = useState([0, 0, 0]);
+    const [worldRotation, setWorldRotation] = useState([0, 0, 0]); // used to set the objects' rotation in the world
+    const basicCameraPos = [meshPosition[0]-2, meshPosition[1]+5, meshPosition[2]-5]; // used to set the camera's position in the world
 
     extend({OrbitControls});
     const Controls = () => {
         const {camera, gl} = useThree();
         const controls = useRef();
-        camera.position.set(meshPosition[0], meshPosition[1], meshPosition[2]-5);
+        camera.position.set(...basicCameraPos);
         useFrame(() => controls.current.update());
         return <orbitControls
             ref={controls}
@@ -20,8 +22,9 @@ const Scene = () => {
             enableDamping={true}
             enablePan={false}
             enableRotate={false}
-            target={meshPosition}
             enabled={true}
+            castShadow={true}
+            target={meshPosition}
         />;
     }
 
@@ -56,10 +59,11 @@ const Scene = () => {
         <Canvas>
             <Controls/>
             <ambientLight intensity={0.5}/>
-            <pointLight position={[2, 2, 2]}/>
+            <pointLight position={[0, 4, 0]}/>
             <mesh
+                name="cube"
                 position={meshPosition}
-                rotation={[-35, -20, 0]}
+                rotation={worldRotation}
                 scale={[1, 1, 1]}
             >
                 <boxBufferGeometry attach="geometry" args={[1, 1, 1]}/>
@@ -71,9 +75,10 @@ const Scene = () => {
                 />
             </mesh>
             <mesh
-                position={[0, 0, 0]}
-                rotation={[0, 0, 0]}
-                scale={[1, 1, 1]}
+                name="floor"
+                position={[0, -1, 0]}
+                rotation={worldRotation}
+                scale={[100000, 0.01, 100000]}
             >
                 <boxBufferGeometry attach="geometry" args={[1, 1, 1]}/>
                 <meshStandardMaterial
