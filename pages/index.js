@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/index.module.css'
-import Scene from '../components/Scene/Scene'
+import Scene from '../Components/Scene/Scene'
 
 const Home = () => {
     return (
