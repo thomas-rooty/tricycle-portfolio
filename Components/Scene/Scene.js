@@ -23,7 +23,9 @@ const Scene = () => {
 
     return (
         <Canvas>
-            <Effects/>
+            {/* This cause crashing after moving too much
+            <Effects/>*/
+            }
             <CameraObject/>
             <ambientLight intensity={0.10}/>
             <pointLight
