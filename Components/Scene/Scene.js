@@ -1,7 +1,6 @@
 import {Canvas} from '@react-three/fiber';
 import {useEffect, useState} from 'react';
 import {CameraController} from '../Camera/Camera';
-import {MovementsHandler} from "../Functions/MovementsHandler/MovementsHandler";
 import {Floor} from "./Floor/Floor";
 import {PlayerObject} from "./PlayerObject/PlayerObject";
 import {Tree} from "./Tree/Tree";
@@ -10,16 +9,20 @@ import Effects from "../Effects/Effects";
 const Scene = () => {
     const [meshPosition, setMeshPosition] = useState([0, 0, 0]);
     const basicCameraPos = [meshPosition[0] - 2, meshPosition[1] + 5, meshPosition[2] - 5]; // used to set the camera's position in the world
-
     const CameraObject = CameraController(basicCameraPos, meshPosition);
-    const changePosition = MovementsHandler(setMeshPosition, meshPosition);
 
     useEffect(() => {
-        document.addEventListener('keypress', changePosition);
-        return () => {
-            document.removeEventListener('keypress', changePosition);
+        document.onkeydown = (e) => {
+            if (e.key === 'z') {
+                console.log('z pressed');
+            }
         }
-    }, [changePosition]);
+        document.onkeyup = (e) => {
+            if (e.key === 'z') {
+                console.log('z released');
+            }
+        }
+    }, []);
 
     return (
         <Canvas>
