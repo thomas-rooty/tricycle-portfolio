@@ -33,7 +33,7 @@ const PlayerObject = (props) => {
                 props.setDirection("");
             }
         };
-    }, [props.direction]);
+    }, []);
 
     // Update the player's position based on the direction he is moving to at every frame
     useFrame(() => {
