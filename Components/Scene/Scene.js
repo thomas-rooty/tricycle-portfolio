@@ -1,28 +1,16 @@
 import {Canvas} from '@react-three/fiber';
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import {CameraController} from '../Camera/Camera';
 import {Floor} from "./Floor/Floor";
-import {PlayerObject} from "./PlayerObject/PlayerObject";
+import PlayerObject from "./PlayerObject/PlayerObject";
 import {Tree} from "./Tree/Tree";
 import Effects from "../Effects/Effects";
 
 const Scene = () => {
     const [meshPosition, setMeshPosition] = useState([0, 0, 0]);
+    const [direction, setDirection] = useState("");
     const basicCameraPos = [meshPosition[0] - 2, meshPosition[1] + 5, meshPosition[2] - 5]; // used to set the camera's position in the world
     const CameraObject = CameraController(basicCameraPos, meshPosition);
-
-    useEffect(() => {
-        document.onkeydown = (e) => {
-            if (e.key === 'z') {
-                console.log('z pressed');
-            }
-        }
-        document.onkeyup = (e) => {
-            if (e.key === 'z') {
-                console.log('z released');
-            }
-        }
-    }, []);
 
     return (
         <Canvas>
@@ -34,7 +22,12 @@ const Scene = () => {
                 intensity={0.5}
             />
             <directionalLight position={[0, 1, 0]}/>
-            {PlayerObject(meshPosition)}
+            <PlayerObject
+                meshPosition={meshPosition}
+                setMeshPosition={setMeshPosition}
+                direction={direction}
+                setDirection={setDirection}
+            />
             <Floor/>
             <Tree/>
         </Canvas>
