@@ -9,15 +9,16 @@ const PlayerObject = (props) => {
     useEffect(() => {
         document.onkeydown = (e) => {
             // Directions
-            if (e.key === 'q') {
+            if (e.key === 'q' || e.key === 'a') {
                 props.setDirection("left");
             } else if (e.key === 'd') {
                 props.setDirection("right");
-            } else if (e.key === 'z') {
+            } else if (e.key === 'z' || e.key === 'w') {
                 props.setDirection("forward");
             } else if (e.key === 's') {
                 props.setDirection("backward");
             }
+            // Will manage the player's diagonal movement
 
             // Sprint key
             if (e.key === 'Shift') {
@@ -25,7 +26,7 @@ const PlayerObject = (props) => {
             }
         };
         document.onkeyup = (e) => {
-            if (e.key === 'q' || e.key === 'd' || e.key === 'z' || e.key === 's') {
+            if (e.key === 'q' || e.key === 'd' || e.key === 'z' || e.key === 's' || e.key === 'a' || e.key === 'w') {
                 props.setDirection("");
             }
             if (e.key === 'Shift') {
@@ -36,6 +37,7 @@ const PlayerObject = (props) => {
 
     // Update the player's position based on the direction he is moving to at every frame
     useFrame(() => {
+        // Handle straight movement
         if (props.direction === "right") {
             props.setMeshPosition([props.meshPosition[0] - basePlayerSpeed, props.meshPosition[1], props.meshPosition[2]]);
         } else if (props.direction === "left") {
@@ -45,6 +47,8 @@ const PlayerObject = (props) => {
         } else if (props.direction === "backward") {
             props.setMeshPosition([props.meshPosition[0], props.meshPosition[1], props.meshPosition[2] - basePlayerSpeed]);
         }
+
+        // Will manage the player's diagonal movement
     });
 
     return (
