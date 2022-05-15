@@ -1,5 +1,3 @@
-import {useLoader} from "@react-three/fiber";
-
 export const Floor = () => {
 
     return <mesh

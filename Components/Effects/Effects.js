@@ -1,13 +1,15 @@
-import {EffectComposer, DepthOfField} from "@react-three/postprocessing";
+import {EffectComposer, Vignette } from "@react-three/postprocessing";
 
-export const Effects = () => {
+const Effects = () => {
     return (
         <EffectComposer>
-            <DepthOfField
-                focusDistance={0} // where to focus
-                focalLength={0.04} // focal length
-                bokehScale={2} // bokeh size
+            <Vignette
+                darkness={0.3}
+                offset={0.01}
+                blurRadius={0.5}
             />
         </EffectComposer>
     );
 }
+
+export default Effects;

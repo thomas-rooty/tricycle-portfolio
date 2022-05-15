@@ -5,7 +5,8 @@ import {useRef} from "react";
 export const CameraController = (basicCameraPos, meshPosition) => {
     extend({OrbitControls});
     return () => {
-        const {camera, gl} = useThree();
+        let camera, gl;
+        ({camera, gl} = useThree());
         const controls = useRef();
         camera.position.set(...basicCameraPos);
         useFrame(() => controls.current.update());

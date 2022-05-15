@@ -5,7 +5,7 @@ import {MovementsHandler} from "../Functions/MovementsHandler/MovementsHandler";
 import {Floor} from "./Floor/Floor";
 import {PlayerObject} from "./PlayerObject/PlayerObject";
 import {Tree} from "./Tree/Tree";
-import {Effects} from "../Effects/Effects";
+import Effects from "../Effects/Effects";
 
 const Scene = () => {
     const [meshPosition, setMeshPosition] = useState([0, 0, 0]);
@@ -23,9 +23,7 @@ const Scene = () => {
 
     return (
         <Canvas>
-            {/* This cause crashing after moving too much
-            <Effects/>*/
-            }
+            <Effects/>
             <CameraObject/>
             <ambientLight intensity={0.10}/>
             <pointLight
