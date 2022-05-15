@@ -30,7 +30,6 @@ const PlayerObject = (props) => {
             }
             if (e.key === 'Shift') {
                 setBasePlayerSpeed(0.04);
-                props.setDirection("");
             }
         };
     }, []);
