@@ -4,51 +4,63 @@ import {useFrame} from '@react-three/fiber';
 const PlayerObject = (props) => {
     const [basePlayerSpeed, setBasePlayerSpeed] = useState(0.04);
     const sprintMultiplier = 1.5;
+    let keys = {
+        up: false,
+        down: false,
+        left: false,
+        right: false
+    }
 
-    // Handle the direction of the player object based on the key pressed
-    useEffect(() => {
-        document.onkeydown = (e) => {
-            // Directions
-            if (e.key === 'q' || e.key === 'a') {
-                props.setDirection("left");
-            } else if (e.key === 'd') {
-                props.setDirection("right");
-            } else if (e.key === 'z' || e.key === 'w') {
-                props.setDirection("forward");
-            } else if (e.key === 's') {
-                props.setDirection("backward");
-            }
-            // Will manage the player's diagonal movement
-
-            // Sprint key
-            if (e.key === 'Shift') {
-                setBasePlayerSpeed(basePlayerSpeed * sprintMultiplier);
-            }
-        };
-        document.onkeyup = (e) => {
-            if (e.key === 'q' || e.key === 'd' || e.key === 'z' || e.key === 's' || e.key === 'a' || e.key === 'w') {
-                props.setDirection("");
-            }
-            if (e.key === 'Shift') {
-                setBasePlayerSpeed(0.04);
-            }
-        };
-    }, []);
-
-    // Update the player's position based on the direction he is moving to at every frame
-    useFrame(() => {
-        // Handle straight movement
-        if (props.direction === "right") {
-            props.setMeshPosition([props.meshPosition[0] - basePlayerSpeed, props.meshPosition[1], props.meshPosition[2]]);
-        } else if (props.direction === "left") {
-            props.setMeshPosition([props.meshPosition[0] + basePlayerSpeed, props.meshPosition[1], props.meshPosition[2]]);
-        } else if (props.direction === "forward") {
-            props.setMeshPosition([props.meshPosition[0], props.meshPosition[1], props.meshPosition[2] + basePlayerSpeed]);
-        } else if (props.direction === "backward") {
-            props.setMeshPosition([props.meshPosition[0], props.meshPosition[1], props.meshPosition[2] - basePlayerSpeed]);
+    const updateKeyStates = (key, value) => {
+        switch(key) {
+            case 'z':
+                keys.up = value;
+                break;
+            case 's':
+                keys.down = value;
+                break;
+            case 'q':
+                keys.left = value;
+                break;
+            case 'd':
+                keys.right = value;
+                break;
         }
+    }
 
-        // Will manage the player's diagonal movement
+    document.addEventListener('keydown', (e) => {
+        updateKeyStates(e.key, true);
+    });
+
+    document.addEventListener('keyup', (e) => {
+        updateKeyStates(e.key, false);
+    });
+
+    useFrame(() => {
+        if (keys.up) {
+            console.log("Moving forward");
+        }
+        if (keys.down) {
+            console.log("Moving backward");
+        }
+        if (keys.left) {
+            console.log("Moving left");
+        }
+        if (keys.right) {
+            console.log("Moving right");
+        }
+        if (keys.up && keys.left) {
+            console.log("Moving forward and left");
+        }
+        if (keys.up && keys.right) {
+            console.log("Moving forward and right");
+        }
+        if (keys.down && keys.left) {
+            console.log("Moving backward and left");
+        }
+        if (keys.down && keys.right) {
+            console.log("Moving backward and right");
+        }
     });
 
     return (

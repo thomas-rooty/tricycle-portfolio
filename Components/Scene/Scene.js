@@ -8,7 +8,7 @@ import Effects from "../Effects/Effects";
 
 const Scene = () => {
     const [meshPosition, setMeshPosition] = useState([0, 0, 0]);
-    const [direction, setDirection] = useState("");
+    const [direction, setDirection] = useState("stop");
     const basicCameraPos = [meshPosition[0] - 2, meshPosition[1] + 5, meshPosition[2] - 5]; // used to set the camera's position in the world
     const CameraObject = CameraController(basicCameraPos, meshPosition);
 
