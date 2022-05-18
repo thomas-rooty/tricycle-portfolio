@@ -7,10 +7,11 @@ import {Tree} from "./Tree/Tree";
 import Effects from "../Effects/Effects";
 
 const Scene = () => {
-    const [meshPosition, setMeshPosition] = useState([0, 0, 0]);
+    let playerPosition = [0, 0, 0];
+    const [meshPosition, setMeshPosition] = useState(playerPosition);
     const [direction, setDirection] = useState("stop");
-    const basicCameraPos = [meshPosition[0] - 2, meshPosition[1] + 5, meshPosition[2] - 5]; // used to set the camera's position in the world
-    const CameraObject = CameraController(basicCameraPos, meshPosition);
+    const basicCameraPos = [playerPosition[0] - 2, playerPosition[1] + 5, playerPosition[2] - 5]; // used to set the camera's position in the world
+    const CameraObject = CameraController(basicCameraPos, playerPosition);
 
     return (
         <Canvas>
@@ -23,8 +24,9 @@ const Scene = () => {
             />
             <directionalLight position={[0, 1, 0]}/>
             <PlayerObject
-                meshPosition={meshPosition}
-                setMeshPosition={setMeshPosition}
+                playerPosition={playerPosition}
+                realPosition={meshPosition}
+                setRealPosition={setMeshPosition}
                 direction={direction}
                 setDirection={setDirection}
             />

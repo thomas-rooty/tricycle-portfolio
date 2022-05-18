@@ -2,7 +2,7 @@ import {extend, useFrame, useThree} from "@react-three/fiber";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import {useRef} from "react";
 
-export const CameraController = (basicCameraPos, meshPosition) => {
+export const CameraController = (basicCameraPos, playerPosition) => {
     extend({OrbitControls});
     return () => {
         let camera, gl;
@@ -19,7 +19,7 @@ export const CameraController = (basicCameraPos, meshPosition) => {
             enableRotate={false}
             enabled={true}
             castShadow={true}
-            target={meshPosition}
+            target={playerPosition}
         />;
     };
 }

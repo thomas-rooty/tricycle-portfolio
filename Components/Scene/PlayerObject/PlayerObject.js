@@ -12,7 +12,7 @@ const PlayerObject = (props) => {
     }
 
     const updateKeyStates = (key, value) => {
-        switch(key) {
+        switch (key) {
             case 'z':
                 keys.up = value;
                 break;
@@ -27,7 +27,6 @@ const PlayerObject = (props) => {
                 break;
         }
     }
-
     document.addEventListener('keydown', (e) => {
         updateKeyStates(e.key, true);
     });
@@ -38,35 +37,28 @@ const PlayerObject = (props) => {
 
     useFrame(() => {
         if (keys.up) {
-            console.log("Moving forward");
+            console.log("Going up");
+            props.playerPosition[2] += basePlayerSpeed;
+            props.setRealPosition([props.playerPosition[0], props.playerPosition[1], props.playerPosition[2]]);
         }
         if (keys.down) {
-            console.log("Moving backward");
+            console.log("Going down");
+            props.playerPosition[0] -= basePlayerSpeed;
         }
         if (keys.left) {
-            console.log("Moving left");
+            console.log("Going left");
+            props.playerPosition[2] -= basePlayerSpeed;
         }
         if (keys.right) {
-            console.log("Moving right");
+            console.log("Going right");
+            props.playerPosition[2] += basePlayerSpeed;
         }
-        if (keys.up && keys.left) {
-            console.log("Moving forward and left");
-        }
-        if (keys.up && keys.right) {
-            console.log("Moving forward and right");
-        }
-        if (keys.down && keys.left) {
-            console.log("Moving backward and left");
-        }
-        if (keys.down && keys.right) {
-            console.log("Moving backward and right");
-        }
-    });
+    })
 
     return (
         <mesh
             name="playerMesh"
-            position={props.meshPosition}
+            position={props.realPosition}
             rotation={[0, 0, 0]}
             scale={[1, 1, 1]}
         >
