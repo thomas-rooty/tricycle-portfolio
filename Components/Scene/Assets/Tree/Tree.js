@@ -1,12 +1,14 @@
 import {useRef} from "react";
 
-export const Tree = () => {
+export const Tree = (props) => {
     const tree = useRef();
+    const trunkPos = props.position;
+    const leavesPos = [props.position[0], props.position[1] + 1, props.position[2]];
     return (
         <group ref={tree}>
             <mesh
                 name="leaves"
-                position={[0, 1, 0]}
+                position={leavesPos}
                 rotation={[0, 0, 0]}
                 scale={[1, 1.7, 1]}
             >
@@ -18,7 +20,7 @@ export const Tree = () => {
             </mesh>
             <mesh
                 name="trunk"
-                position={[0, 0, 0]}
+                position={trunkPos}
                 rotation={[0, 0, 0]}
                 scale={[0.3, 1, 0.3]}
             >

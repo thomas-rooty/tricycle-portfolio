@@ -39,16 +39,22 @@ const Player = () => {
 
     const updateKeyStates = (key, value) => {
         switch (key) {
-            case 'z':
+            case 'z' :
+            case 'w' :
+            case 'ArrowUp' :
                 keys.up = value;
                 break;
             case 's':
+            case 'ArrowDown':
                 keys.down = value;
                 break;
             case 'q':
+            case 'a':
+            case 'ArrowLeft':
                 keys.left = value;
                 break;
             case 'd':
+            case 'ArrowRight':
                 keys.right = value;
                 break;
             case 'Shift':

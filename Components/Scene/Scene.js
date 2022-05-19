@@ -1,7 +1,7 @@
 import {Canvas} from '@react-three/fiber';
 import {Floor} from "./Floor/Floor";
 import Player from "./Player/Player";
-import {Tree} from "./Assets/Tree/Tree";
+import Trees from "./Assets/Tree/Trees";
 import Effects from "../Effects/Effects";
 
 const Scene = () => {
@@ -16,7 +16,7 @@ const Scene = () => {
             <directionalLight position={[0, 1, 0]}/>
             <Player />
             <Floor/>
-            <Tree/>
+            <Trees/>
         </Canvas>
     );
 }
