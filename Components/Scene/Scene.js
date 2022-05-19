@@ -1,13 +1,10 @@
 import {Canvas} from '@react-three/fiber';
-import {useState} from 'react';
 import {Floor} from "./Floor/Floor";
 import Player from "./Player/Player";
-import {Tree} from "./Tree/Tree";
+import {Tree} from "./Assets/Tree/Tree";
 import Effects from "../Effects/Effects";
 
 const Scene = () => {
-    let playerPosition = [0, 0, 0];
-
     return (
         <Canvas>
             <Effects/>

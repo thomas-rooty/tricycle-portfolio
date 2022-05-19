@@ -8,12 +8,11 @@ const Player = () => {
     const player = useRef();
     let basePlayerSpeed = 0.04;
     const sprintMultiplier = 1.33;
-    const [basicCameraPos, setBasicCameraPos] = useState([-2, 5, -5]);
-    const CameraController = (basicCameraPos) => {
+    const CameraController = () => {
         extend({OrbitControls});
         return () => {
             ({camera, gl} = useThree());
-            camera.position.set(...basicCameraPos);
+            camera.position.set([-2, 5, -5]);
             useFrame(() => controls.current.update());
             return <orbitControls
                 ref={controls}
@@ -27,13 +26,14 @@ const Player = () => {
             />;
         };
     };
-    const CameraComponent = CameraController(basicCameraPos);
+    const CameraComponent = CameraController();
 
     let keys = {
         up: false,
         down: false,
         left: false,
-        right: false
+        right: false,
+        sprint: false,
     };
 
     const updateKeyStates = (key, value) => {
@@ -65,12 +65,18 @@ const Player = () => {
     });
 
     useFrame(() => {
+        // Make the camera follow the player
         controls.current.target.x = player.current.position.x;
         controls.current.target.y = player.current.position.y;
         controls.current.target.z = player.current.position.z;
         camera.position.set(player.current.position.x - 2, player.current.position.y + 5, player.current.position.z - 5);
+
+        // Handle player movement
         if (keys.up) {
             player.current.position.z += basePlayerSpeed;
+            if (keys.sprint) {
+                player.current.position.z += basePlayerSpeed * sprintMultiplier;
+            }
         }
         if (keys.down) {
             player.current.position.z -= basePlayerSpeed;
@@ -80,9 +86,6 @@ const Player = () => {
         }
         if (keys.right) {
             player.current.position.x -= basePlayerSpeed;
-        }
-        if (keys.sprint) {
-            player.current.position.z += basePlayerSpeed * sprintMultiplier;
         }
     });
 
