@@ -1,4 +1,4 @@
-import {useRef, useState} from 'react';
+import {useRef} from 'react';
 import {extend, useFrame, useThree} from '@react-three/fiber';
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 
@@ -6,8 +6,6 @@ const Player = () => {
     let camera, gl;
     const controls = useRef();
     const player = useRef();
-    let basePlayerSpeed = 0.04;
-    const sprintMultiplier = 1.33;
     const CameraController = () => {
         extend({OrbitControls});
         return () => {
@@ -28,6 +26,9 @@ const Player = () => {
     };
     const CameraComponent = CameraController();
 
+    /* Keyboard events handler */
+    const basePlayerSpeed = 0.04;
+    const sprintMultiplier = 1.5;
     let keys = {
         up: false,
         down: false,
@@ -65,18 +66,15 @@ const Player = () => {
     });
 
     useFrame(() => {
-        // Make the camera follow the player
+        // Make the camera follow the player on each frame
         controls.current.target.x = player.current.position.x;
         controls.current.target.y = player.current.position.y;
         controls.current.target.z = player.current.position.z;
         camera.position.set(player.current.position.x - 2, player.current.position.y + 5, player.current.position.z - 5);
 
-        // Handle player movement
+        // Make the player move according to the keyboard input
         if (keys.up) {
-            player.current.position.z += basePlayerSpeed;
-            if (keys.sprint) {
-                player.current.position.z += basePlayerSpeed * sprintMultiplier;
-            }
+            player.current.position.z += keys.sprint ? basePlayerSpeed * sprintMultiplier : basePlayerSpeed;
         }
         if (keys.down) {
             player.current.position.z -= basePlayerSpeed;
