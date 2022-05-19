@@ -2,7 +2,7 @@ export const Floor = () => {
 
     return <mesh
         name="floor"
-        position={[0, -1, 0]}
+        position={[0, -0.9, 0]}
         rotation={[0, 0, 0]}
         scale={[10000, 1, 10000]}
         receiveShadow={true}

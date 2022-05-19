@@ -11,6 +11,7 @@ export const Tree = (props) => {
                 position={leavesPos}
                 rotation={[0, 0, 0]}
                 scale={[1, 1.7, 1]}
+                castShadow
             >
                 <boxBufferGeometry attach="geometry" args={[1, 1, 1]}/>
                 <meshStandardMaterial
@@ -23,6 +24,7 @@ export const Tree = (props) => {
                 position={trunkPos}
                 rotation={[0, 0, 0]}
                 scale={[0.3, 1, 0.3]}
+                castShadow
             >
                 <boxBufferGeometry attach="geometry" args={[1, 1, 1]}/>
                 <meshStandardMaterial

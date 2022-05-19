@@ -102,6 +102,7 @@ const Player = () => {
                 position={[0, 0, 0]}
                 rotation={[0, 0, 0]}
                 scale={[1, 1, 1]}
+                castShadow
             >
                 <boxBufferGeometry attach="geometry" args={[1, 1, 1]}/>
                 <meshStandardMaterial
