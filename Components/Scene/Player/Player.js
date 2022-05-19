@@ -1,8 +1,8 @@
-import {useRef, useEffect, useState} from 'react';
+import {useRef, useState} from 'react';
 import {extend, useFrame, useThree} from '@react-three/fiber';
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 
-const Player = (props) => {
+const Player = () => {
     let camera, gl;
     const controls = useRef();
     const player = useRef();
