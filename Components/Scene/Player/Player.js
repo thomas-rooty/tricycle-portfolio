@@ -111,19 +111,19 @@ const Player = () => {
             if (keys.left) {
                 playerControls.velocity.set(basePlayerSpeed, 0, 0);
                 if (keys.down && keys.left) {
-                    playerControls.velocity.set(basePlayerSpeed, 0, -basePlayerSpeed);
+                    playerControls.velocity.set(basePlayerSpeed, 0, -basePlayerSpeed / 2);
                 }
                 if (keys.up && keys.left) {
-                    playerControls.velocity.set(basePlayerSpeed, 0, basePlayerSpeed * (keys.sprint ? sprintMultiplier : 1));
+                    playerControls.velocity.set(basePlayerSpeed, 0, (basePlayerSpeed * (keys.sprint ? sprintMultiplier : 1)) / 2);
                 }
             }
             if (keys.right) {
                 playerControls.velocity.set(-basePlayerSpeed, 0, 0);
                 if (keys.down && keys.right) {
-                    playerControls.velocity.set(-basePlayerSpeed, 0, -basePlayerSpeed);
+                    playerControls.velocity.set(-basePlayerSpeed, 0, -basePlayerSpeed / 2);
                 }
                 if (keys.up && keys.right) {
-                    playerControls.velocity.set(-basePlayerSpeed, 0, basePlayerSpeed * (keys.sprint ? sprintMultiplier : 1));
+                    playerControls.velocity.set(-basePlayerSpeed, 0, (basePlayerSpeed * (keys.sprint ? sprintMultiplier : 1)) / 2);
                 }
             }
         }
