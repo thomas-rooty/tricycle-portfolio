@@ -1,4 +1,5 @@
-import {useRef} from 'react';
+import {useEffect, useRef} from 'react';
+import {useBox} from "@react-three/cannon";
 import {extend, useFrame, useThree} from '@react-three/fiber';
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 
@@ -27,14 +28,14 @@ const Player = () => {
     const CameraComponent = CameraController();
 
     /* Keyboard events handler */
-    const basePlayerSpeed = 0.04;
+    const basePlayerSpeed = 3;
     const sprintMultiplier = 1.5;
     let keys = {
         up: false,
         down: false,
         left: false,
         right: false,
-        sprint: false,
+        shift: false,
     };
 
     const updateKeyStates = (key, value) => {
@@ -71,37 +72,41 @@ const Player = () => {
         updateKeyStates(e.key, false);
     });
 
+    const playerPosition = useRef([0, 0, 0]);
+    useEffect(() => {
+        playerBoxApi.position.subscribe(value => playerPosition.current = value);
+    }, []);
+
     useFrame(() => {
         // Make the camera follow the player on each frame
-        controls.current.target.x = player.current.position.x;
-        controls.current.target.y = player.current.position.y;
-        controls.current.target.z = player.current.position.z;
-        camera.position.set(player.current.position.x - 2, player.current.position.y + 5, player.current.position.z - 5);
+        controls.current.target.x = playerPosition.current[0];
+        controls.current.target.y = playerPosition.current[1];
+        controls.current.target.z = playerPosition.current[2];
+        camera.position.set(playerPosition.current[0] - 2, playerPosition.current[1] + 5, playerPosition.current[2] - 5);
 
         // Make the player move according to the keyboard input
         if (keys.up) {
-            player.current.position.z += keys.sprint ? basePlayerSpeed * sprintMultiplier : basePlayerSpeed;
+            playerBoxApi.velocity.set(0, 0, basePlayerSpeed * (keys.sprint ? sprintMultiplier : 1));
         }
         if (keys.down) {
-            player.current.position.z -= basePlayerSpeed;
+            playerBoxApi.velocity.set(0, 0, -basePlayerSpeed);
         }
         if (keys.left) {
-            player.current.position.x += basePlayerSpeed;
+            playerBoxApi.velocity.set(basePlayerSpeed, 0, 0);
         }
         if (keys.right) {
-            player.current.position.x -= basePlayerSpeed;
+            playerBoxApi.velocity.set(-basePlayerSpeed, 0, 0);
         }
     });
+
+    const [playerBoxRef, playerBoxApi] = useBox(() => ({ mass: 2, position: [0, 0, 0] }));
 
     return (
         <group>
             <CameraComponent/>
             <mesh
                 name="playerMesh"
-                ref={player}
-                position={[0, 0, 0]}
-                rotation={[0, 0, 0]}
-                scale={[1, 1, 1]}
+                ref={playerBoxRef}
                 castShadow
             >
                 <boxBufferGeometry attach="geometry" args={[1, 1, 1]}/>

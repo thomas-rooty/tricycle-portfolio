@@ -1,5 +1,6 @@
 import {useRef} from "react";
 import {Canvas} from '@react-three/fiber';
+import {Physics} from "@react-three/cannon";
 import {Floor} from "./Floor/Floor";
 import Player from "./Player/Player";
 import Trees from "./Assets/Tree/Trees";
@@ -22,9 +23,11 @@ const Scene = () => {
                 shadow-mapSize-height={1024}
             />
             <directionalLight position={[0, 1, 0]}/>
-            <Player/>
-            <Floor/>
-            <Trees/>
+            <Physics>
+                <Player/>
+                <Floor position={[0, -0.5, 0]}/>
+                <Trees/>
+            </Physics>
         </Canvas>
     );
 }

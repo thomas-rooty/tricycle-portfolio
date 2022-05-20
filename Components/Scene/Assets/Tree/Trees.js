@@ -1,12 +1,23 @@
 import {Tree} from './Tree';
 
 const Trees = () => {
+    // Generate some random positioned trees
+    const trees = [];
+    for (let i = 0; i < 10; i++) {
+        const x = Math.random() * 10 - 5;
+        const z = Math.random() * 10 - 5;
+        trees.push(
+            <Tree key={i} position={[x, 0, z]}/>
+        );
+    }
+
+    // Put a tree at spawn
+    trees.push(
+        <Tree key={'spawn'} position={[0, 5, 0]}/>
+    );
     return (
         <group>
-            <Tree position={[-5, 0, -5]}/>
-            <Tree position={[3, 0, -5]}/>
-            <Tree position={[-2, 0, 5]}/>
-            <Tree position={[5, 0, 2]}/>
+            {trees}
         </group>
     );
 }

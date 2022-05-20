@@ -1,17 +1,11 @@
-export const Floor = () => {
+import {usePlane} from "@react-three/cannon";
 
-    return <mesh
-        name="floor"
-        position={[0, -0.9, 0]}
-        rotation={[0, 0, 0]}
-        scale={[10000, 1, 10000]}
-        receiveShadow={true}
-        castShadow={false}
-    >
-        <boxBufferGeometry attach="geometry" args={[1, 1, 1]}/>
-        <meshStandardMaterial
-            color={0xbf8d4e}
-            attach="material"
-        />
-    </mesh>;
+export const Floor = (props) => {
+    const [ref] = usePlane(() => ({ rotation: [-Math.PI / 2, 0, 0], ...props }))
+    return (
+        <mesh ref={ref} receiveShadow>
+            <planeGeometry attach="geometry" args={[10000, 10000]} />
+            <meshStandardMaterial color={"#2596be"} />
+        </mesh>
+    )
 }
