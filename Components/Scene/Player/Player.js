@@ -1,7 +1,8 @@
 import {useEffect, useRef} from 'react';
-import {useBox} from "@react-three/cannon";
+import {useSphere} from "@react-three/cannon";
 import {extend, useFrame, useThree} from '@react-three/fiber';
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
+import {useFBX} from "@react-three/drei";
 
 const Player = () => {
     //////////////////////////////////////
@@ -77,7 +78,10 @@ const Player = () => {
     //     Player logic    //
     /////////////////////////
     // Player physical reference and properties (speed, jump height, ...)
-    const [playerRef, playerControls] = useBox(() => ({mass: 2, position: [0, 0, 0]}));
+    // I should move the bike accordingly to the movement of the playerRef
+    const bike = useFBX('/Bike.fbx');
+    const bikeRef = useRef();
+    const [playerRef, playerControls] = useSphere(() => ({mass: 10, position: [0, 0, 0], scale: [0.5, 0.5, 0.5]}));
     const basePlayerSpeed = 3;
     const sprintMultiplier = 1.5;
 
@@ -95,6 +99,9 @@ const Player = () => {
             controls.current.target.x = playerPosition.current[0];
             controls.current.target.y = playerPosition.current[1];
             controls.current.target.z = playerPosition.current[2];
+            bikeRef.current.position.x = playerPosition.current[0];
+            bikeRef.current.position.y = playerPosition.current[1];
+            bikeRef.current.position.z = playerPosition.current[2];
 
             // Make the camera follow the player
             camera.position.set(playerPosition.current[0] - 2, playerPosition.current[1] + 5, playerPosition.current[2] - 5);
@@ -102,7 +109,7 @@ const Player = () => {
             // Make the player move according to the keyboard input
             // Move Forward
             if (keys.up) {
-                playerControls.velocity.set(0, 0, basePlayerSpeed * (keys.sprint ? sprintMultiplier : 1));
+                playerControls.velocity.set(0, -1, basePlayerSpeed * (keys.sprint ? sprintMultiplier : 1));
             }
 
             // Move Backward
@@ -115,11 +122,11 @@ const Player = () => {
                 playerControls.velocity.set(basePlayerSpeed, 0, 0);
                 // Strafe Left and go Backward
                 if (keys.down && keys.left) {
-                    playerControls.velocity.set(basePlayerSpeed, 0, -basePlayerSpeed / 2);
+                    playerControls.velocity.set(basePlayerSpeed, 0, -basePlayerSpeed / 1.5);
                 }
                 // Strafe Left and go Forward
                 if (keys.up && keys.left) {
-                    playerControls.velocity.set(basePlayerSpeed, 0, (basePlayerSpeed * (keys.sprint ? sprintMultiplier : 1)) / 2);
+                    playerControls.velocity.set(basePlayerSpeed, 0, (basePlayerSpeed * (keys.sprint ? sprintMultiplier : 1)) / 1.5);
                 }
             }
 
@@ -128,11 +135,11 @@ const Player = () => {
                 playerControls.velocity.set(-basePlayerSpeed, 0, 0);
                 // Strafe Right and go Backward
                 if (keys.down && keys.right) {
-                    playerControls.velocity.set(-basePlayerSpeed, 0, -basePlayerSpeed / 2);
+                    playerControls.velocity.set(-basePlayerSpeed, 0, -basePlayerSpeed / 1.5);
                 }
                 // Strafe Right and go Forward
                 if (keys.up && keys.right) {
-                    playerControls.velocity.set(-basePlayerSpeed, 0, (basePlayerSpeed * (keys.sprint ? sprintMultiplier : 1)) / 2);
+                    playerControls.velocity.set(-basePlayerSpeed, 0, (basePlayerSpeed * (keys.sprint ? sprintMultiplier : 1)) / 1.5);
                 }
             }
         }
@@ -147,11 +154,13 @@ const Player = () => {
                     ref={playerRef}
                     castShadow
                 >
-                    <boxBufferGeometry attach="geometry" args={[1, 1, 1]}/>
-                    <meshStandardMaterial
-                        attach="material"
-                    />
                 </mesh>
+                <primitive
+                    ref={bikeRef}
+                    object={bike}
+                    position={[0, 0, 0]}
+                    scale={[0.015, 0.015, 0.015]}
+                />
             </group>
         </>
     );
