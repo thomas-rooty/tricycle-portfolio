@@ -38,7 +38,6 @@ const Player = () => {
         left: false,
         right: false,
         shift: false,
-        jump: false,
     };
 
     const updateKeyStates = (key, value) => {
@@ -64,8 +63,6 @@ const Player = () => {
             case 'Shift':
                 keys.sprint = value;
                 break;
-            case ' ':
-                keys.jump = value;
         }
     };
 
@@ -96,46 +93,42 @@ const Player = () => {
 
     // Handle events on each frames
     useFrame(() => {
-        // Make the camera always point to the player
-        controls.current.target.x = playerPosition.current[0];
-        controls.current.target.y = playerPosition.current[1];
-        controls.current.target.z = playerPosition.current[2];
+            // Make the camera always point to the player
+            controls.current.target.x = playerPosition.current[0];
+            controls.current.target.y = playerPosition.current[1];
+            controls.current.target.z = playerPosition.current[2];
 
-        // Make the camera follow the player
-        camera.position.set(playerPosition.current[0] - 2, playerPosition.current[1] + 5, playerPosition.current[2] - 5);
+            // Make the camera follow the player
+            camera.position.set(playerPosition.current[0] - 2, playerPosition.current[1] + 5, playerPosition.current[2] - 5);
 
-        // Make the player move according to the keyboard input
-        if (keys.up) {
-            playerControls.velocity.set(0, 0, basePlayerSpeed * (keys.sprint ? sprintMultiplier : 1));
-        }
-        if (keys.down) {
-            playerControls.velocity.set(0, 0, -basePlayerSpeed);
-        }
-        if (keys.left) {
-            playerControls.velocity.set(basePlayerSpeed, 0, 0);
-            if (keys.down && keys.left) {
-                playerControls.velocity.set(basePlayerSpeed, 0, -basePlayerSpeed);
+            // Make the player move according to the keyboard input
+            if (keys.up) {
+                playerControls.velocity.set(0, 0, basePlayerSpeed * (keys.sprint ? sprintMultiplier : 1));
             }
-            if (keys.up && keys.left) {
-                playerControls.velocity.set(basePlayerSpeed, 0, basePlayerSpeed * (keys.sprint ? sprintMultiplier : 1));
+            if (keys.down) {
+                playerControls.velocity.set(0, 0, -basePlayerSpeed);
             }
-        }
-        if (keys.right) {
-            playerControls.velocity.set(-basePlayerSpeed, 0, 0);
-            if (keys.down && keys.right) {
-                playerControls.velocity.set(-basePlayerSpeed, 0, -basePlayerSpeed);
+            if (keys.left) {
+                playerControls.velocity.set(basePlayerSpeed, 0, 0);
+                if (keys.down && keys.left) {
+                    playerControls.velocity.set(basePlayerSpeed, 0, -basePlayerSpeed);
+                }
+                if (keys.up && keys.left) {
+                    playerControls.velocity.set(basePlayerSpeed, 0, basePlayerSpeed * (keys.sprint ? sprintMultiplier : 1));
+                }
             }
-            if (keys.up && keys.right) {
-                playerControls.velocity.set(-basePlayerSpeed, 0, basePlayerSpeed * (keys.sprint ? sprintMultiplier : 1));
-            }
-        }
-        if (keys.jump) {
-            // Prevent jumping if the player is already jumping
-            if (playerPosition.current[1] <= 0.2) {
-                playerControls.velocity.set(0, 5, 0);
+            if (keys.right) {
+                playerControls.velocity.set(-basePlayerSpeed, 0, 0);
+                if (keys.down && keys.right) {
+                    playerControls.velocity.set(-basePlayerSpeed, 0, -basePlayerSpeed);
+                }
+                if (keys.up && keys.right) {
+                    playerControls.velocity.set(-basePlayerSpeed, 0, basePlayerSpeed * (keys.sprint ? sprintMultiplier : 1));
+                }
             }
         }
-    });
+    )
+    ;
 
     return (
         <group>
