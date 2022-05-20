@@ -38,6 +38,7 @@ const Player = () => {
         left: false,
         right: false,
         shift: false,
+        jump: false,
     };
 
     const updateKeyStates = (key, value) => {
@@ -63,6 +64,8 @@ const Player = () => {
             case 'Shift':
                 keys.sprint = value;
                 break;
+            case ' ':
+                keys.jump = value;
         }
     };
 
@@ -79,14 +82,16 @@ const Player = () => {
     /////////////////////////
 
     // Player physical reference and properties (speed, jump height, ...)
-    const [playerRef, playerControls] = useBox(() => ({ mass: 2, position: [0, 0, 0] }));
+    const [playerRef, playerControls] = useBox(() => ({mass: 2, position: [0, 0, 0]}));
     const basePlayerSpeed = 3;
     const sprintMultiplier = 1.5;
 
     // Used to register the calculated player position after the player has moved with a certain velocity
     const playerPosition = useRef([0, 0, 0]);
+    const playerVelocity = useRef([0, 0, 0]);
     useEffect(() => {
         playerControls.position.subscribe(value => playerPosition.current = value);
+        playerControls.velocity.subscribe((v) => (playerVelocity.current = v));
     }, []);
 
     // Handle events on each frames
@@ -108,9 +113,27 @@ const Player = () => {
         }
         if (keys.left) {
             playerControls.velocity.set(basePlayerSpeed, 0, 0);
+            if (keys.down && keys.left) {
+                playerControls.velocity.set(basePlayerSpeed, 0, -basePlayerSpeed);
+            }
+            if (keys.up && keys.left) {
+                playerControls.velocity.set(basePlayerSpeed, 0, basePlayerSpeed * (keys.sprint ? sprintMultiplier : 1));
+            }
         }
         if (keys.right) {
             playerControls.velocity.set(-basePlayerSpeed, 0, 0);
+            if (keys.down && keys.right) {
+                playerControls.velocity.set(-basePlayerSpeed, 0, -basePlayerSpeed);
+            }
+            if (keys.up && keys.right) {
+                playerControls.velocity.set(-basePlayerSpeed, 0, basePlayerSpeed * (keys.sprint ? sprintMultiplier : 1));
+            }
+        }
+        if (keys.jump) {
+            // Prevent jumping if the player is already jumping
+            if (playerPosition.current[1] <= 0.2) {
+                playerControls.velocity.set(0, 5, 0);
+            }
         }
     });
 

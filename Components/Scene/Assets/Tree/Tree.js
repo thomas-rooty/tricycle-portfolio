@@ -1,7 +1,7 @@
 import {useBox} from "@react-three/cannon";
 
 export const Tree = (props) => {
-    const [treeRef, treeApi] = useBox(() => ({ mass: 1, position: props.position, ...props }));
+    const [treeRef, treeApi] = useBox(() => ({ mass: 6, position: props.position, ...props }));
     return (
         <group>
             <mesh
