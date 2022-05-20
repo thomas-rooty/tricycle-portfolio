@@ -7,7 +7,6 @@ const Player = () => {
     //////////////////////////////////////
     //     Keyboard and camera logic    //
     //////////////////////////////////////
-
     let camera, gl;
     const controls = useRef();
     const player = useRef();
@@ -77,7 +76,6 @@ const Player = () => {
     /////////////////////////
     //     Player logic    //
     /////////////////////////
-
     // Player physical reference and properties (speed, jump height, ...)
     const [playerRef, playerControls] = useBox(() => ({mass: 2, position: [0, 0, 0]}));
     const basePlayerSpeed = 3;
@@ -102,26 +100,37 @@ const Player = () => {
             camera.position.set(playerPosition.current[0] - 2, playerPosition.current[1] + 5, playerPosition.current[2] - 5);
 
             // Make the player move according to the keyboard input
+            // Move Forward
             if (keys.up) {
                 playerControls.velocity.set(0, 0, basePlayerSpeed * (keys.sprint ? sprintMultiplier : 1));
             }
+
+            // Move Backward
             if (keys.down) {
                 playerControls.velocity.set(0, 0, -basePlayerSpeed);
             }
+
+            // Strafe Left
             if (keys.left) {
                 playerControls.velocity.set(basePlayerSpeed, 0, 0);
+                // Strafe Left and go Backward
                 if (keys.down && keys.left) {
                     playerControls.velocity.set(basePlayerSpeed, 0, -basePlayerSpeed / 2);
                 }
+                // Strafe Left and go Forward
                 if (keys.up && keys.left) {
                     playerControls.velocity.set(basePlayerSpeed, 0, (basePlayerSpeed * (keys.sprint ? sprintMultiplier : 1)) / 2);
                 }
             }
+
+            // Strafe Right
             if (keys.right) {
                 playerControls.velocity.set(-basePlayerSpeed, 0, 0);
+                // Strafe Right and go Backward
                 if (keys.down && keys.right) {
                     playerControls.velocity.set(-basePlayerSpeed, 0, -basePlayerSpeed / 2);
                 }
+                // Strafe Right and go Forward
                 if (keys.up && keys.right) {
                     playerControls.velocity.set(-basePlayerSpeed, 0, (basePlayerSpeed * (keys.sprint ? sprintMultiplier : 1)) / 2);
                 }
