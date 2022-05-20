@@ -4,6 +4,10 @@ import {extend, useFrame, useThree} from '@react-three/fiber';
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 
 const Player = () => {
+    //////////////////////////////////////
+    //     Keyboard and camera logic    //
+    //////////////////////////////////////
+
     let camera, gl;
     const controls = useRef();
     const player = useRef();
@@ -28,8 +32,6 @@ const Player = () => {
     const CameraComponent = CameraController();
 
     /* Keyboard events handler */
-    const basePlayerSpeed = 3;
-    const sprintMultiplier = 1.5;
     let keys = {
         up: false,
         down: false,
@@ -72,16 +74,29 @@ const Player = () => {
         updateKeyStates(e.key, false);
     });
 
+    /////////////////////////
+    //     Player logic    //
+    /////////////////////////
+
+    // Player physical reference and properties (speed, jump height, ...)
+    const [playerBoxRef, playerBoxApi] = useBox(() => ({ mass: 2, position: [0, 0, 0] }));
+    const basePlayerSpeed = 3;
+    const sprintMultiplier = 1.5;
+
+    // Used to register the calculated player position after the player has moved with a certain velocity
     const playerPosition = useRef([0, 0, 0]);
     useEffect(() => {
         playerBoxApi.position.subscribe(value => playerPosition.current = value);
     }, []);
 
+    // Handle events on each frames
     useFrame(() => {
-        // Make the camera follow the player on each frame
+        // Make the camera always point to the player
         controls.current.target.x = playerPosition.current[0];
         controls.current.target.y = playerPosition.current[1];
         controls.current.target.z = playerPosition.current[2];
+
+        // Make the camera follow the player
         camera.position.set(playerPosition.current[0] - 2, playerPosition.current[1] + 5, playerPosition.current[2] - 5);
 
         // Make the player move according to the keyboard input
@@ -98,8 +113,6 @@ const Player = () => {
             playerBoxApi.velocity.set(-basePlayerSpeed, 0, 0);
         }
     });
-
-    const [playerBoxRef, playerBoxApi] = useBox(() => ({ mass: 2, position: [0, 0, 0] }));
 
     return (
         <group>
