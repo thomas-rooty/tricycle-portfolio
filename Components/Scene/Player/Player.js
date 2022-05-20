@@ -2,7 +2,6 @@ import {useEffect, useRef} from 'react';
 import {useBox} from "@react-three/cannon";
 import {extend, useFrame, useThree} from '@react-three/fiber';
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
-import { useSpline } from "../../Spline/Spline";
 
 const Player = () => {
     //////////////////////////////////////
@@ -139,7 +138,6 @@ const Player = () => {
         }
     );
 
-    const {nodes, materials} = useSpline('https://prod.spline.design/Pv8GpZFVzc6AR1WP/scene.splinecode');
     return (
         <>
             <group>
@@ -154,17 +152,6 @@ const Player = () => {
                         attach="material"
                     />
                 </mesh>
-            </group>
-            <group name="Bike" position={[0, 2, 0]} scale={[3, 3, 3]}>
-                <mesh
-                    name="Bike1"
-                    geometry={nodes.Bike1.geometry}
-                    material={nodes.Bike1.material}
-                    castShadow
-                    receiveShadow
-                    position={[0, 0.9, 0]}
-                    rotation={[-Math.PI / 2, 0, 0]}
-                />
             </group>
         </>
     );
