@@ -79,14 +79,14 @@ const Player = () => {
     /////////////////////////
 
     // Player physical reference and properties (speed, jump height, ...)
-    const [playerBoxRef, playerBoxApi] = useBox(() => ({ mass: 2, position: [0, 0, 0] }));
+    const [playerRef, playerControls] = useBox(() => ({ mass: 2, position: [0, 0, 0] }));
     const basePlayerSpeed = 3;
     const sprintMultiplier = 1.5;
 
     // Used to register the calculated player position after the player has moved with a certain velocity
     const playerPosition = useRef([0, 0, 0]);
     useEffect(() => {
-        playerBoxApi.position.subscribe(value => playerPosition.current = value);
+        playerControls.position.subscribe(value => playerPosition.current = value);
     }, []);
 
     // Handle events on each frames
@@ -101,16 +101,16 @@ const Player = () => {
 
         // Make the player move according to the keyboard input
         if (keys.up) {
-            playerBoxApi.velocity.set(0, 0, basePlayerSpeed * (keys.sprint ? sprintMultiplier : 1));
+            playerControls.velocity.set(0, 0, basePlayerSpeed * (keys.sprint ? sprintMultiplier : 1));
         }
         if (keys.down) {
-            playerBoxApi.velocity.set(0, 0, -basePlayerSpeed);
+            playerControls.velocity.set(0, 0, -basePlayerSpeed);
         }
         if (keys.left) {
-            playerBoxApi.velocity.set(basePlayerSpeed, 0, 0);
+            playerControls.velocity.set(basePlayerSpeed, 0, 0);
         }
         if (keys.right) {
-            playerBoxApi.velocity.set(-basePlayerSpeed, 0, 0);
+            playerControls.velocity.set(-basePlayerSpeed, 0, 0);
         }
     });
 
@@ -119,7 +119,7 @@ const Player = () => {
             <CameraComponent/>
             <mesh
                 name="playerMesh"
-                ref={playerBoxRef}
+                ref={playerRef}
                 castShadow
             >
                 <boxBufferGeometry attach="geometry" args={[1, 1, 1]}/>
