@@ -2,10 +2,10 @@ import { useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { useRaycastVehicle } from '@react-three/cannon'
 import { useControls } from '../../utils/useControls'
-import Beetle from './Beetle'
+import Tricycle from './Tricycle'
 import Wheel from './Wheel'
 
-const Vehicle = ({ radius = 0.7, width = 1.2, height = -0.04, front = 1.3, back = -1.15, steer = 0.75, force = 2000, maxBrake = 1e5, ...props }) => {
+const Vehicle = ({ radius = 0.7, width = 1.2, height = -0.04, front = 1.5, back = -0.5, steer = 0.9, force = 1000, maxBrake = 1e5, ...props }) => {
   const chassis = useRef()
   const wheel1 = useRef()
   const wheel2 = useRef()
@@ -58,7 +58,7 @@ const Vehicle = ({ radius = 0.7, width = 1.2, height = -0.04, front = 1.3, back 
 
   return (
     <group ref={vehicle} position={[0, -0.4, 0]}>
-      <Beetle ref={chassis} rotation={props.rotation} position={props.position} angularVelocity={props.angularVelocity} />
+      <Tricycle ref={chassis} rotation={props.rotation} position={props.position} angularVelocity={props.angularVelocity} />
       <Wheel ref={wheel1} radius={radius} leftSide />
       <Wheel ref={wheel2} radius={radius} />
       <Wheel ref={wheel3} radius={radius} leftSide />
