@@ -1,5 +1,5 @@
 import {useEffect, useRef} from 'react';
-import {useSphere} from "@react-three/cannon";
+import {useSphere, useBox} from "@react-three/cannon";
 import {extend, useFrame, useThree} from '@react-three/fiber';
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import {useFBX} from "@react-three/drei";
@@ -79,9 +79,7 @@ const Player = () => {
     /////////////////////////
     // Player physical reference and properties (speed, jump height, ...)
     // I should move the bike accordingly to the movement of the playerRef
-    const bike = useFBX('/Bike.fbx');
-    const bikeRef = useRef();
-    const [playerRef, playerControls] = useSphere(() => ({mass: 10, position: [0, 0, 0], scale: [0.5, 0.5, 0.5]}));
+    const [playerRef, playerControls] = useBox(() => ({mass: 100, position: [0, 0, 0], scale: [0.5, 0.5, 0.5]}));
     const basePlayerSpeed = 3;
     const sprintMultiplier = 1.5;
 
@@ -99,9 +97,6 @@ const Player = () => {
             controls.current.target.x = playerPosition.current[0];
             controls.current.target.y = playerPosition.current[1];
             controls.current.target.z = playerPosition.current[2];
-            bikeRef.current.position.x = playerPosition.current[0];
-            bikeRef.current.position.y = playerPosition.current[1];
-            bikeRef.current.position.z = playerPosition.current[2];
 
             // Make the camera follow the player
             camera.position.set(playerPosition.current[0] - 2, playerPosition.current[1] + 5, playerPosition.current[2] - 5);
@@ -154,13 +149,9 @@ const Player = () => {
                     ref={playerRef}
                     castShadow
                 >
+                    <boxGeometry attach="geometry" args={[1, 1, 1]}/>
+                    <meshStandardMaterial attach="material" color="white"/>
                 </mesh>
-                <primitive
-                    ref={bikeRef}
-                    object={bike}
-                    position={[0, 0, 0]}
-                    scale={[0.015, 0.015, 0.015]}
-                />
             </group>
         </>
     );
