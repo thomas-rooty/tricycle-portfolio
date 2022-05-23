@@ -6,7 +6,7 @@ import Tricycle from './Tricycle'
 import Wheel from './Wheel'
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 
-const Vehicle = ({radius = 0.7, width = 1.5, height = -0.04, front = 1.5, back = -0.5, steer = 0.5, force = 1000, maxBrake = 1e5, ...props }) => {
+const Vehicle = ({radius = 0.7, width = 1.2, height = -0.04, front = 1.3, back = -1.15, steer = 0.75, force = 2000, maxBrake = 1e5, ...props }) => {
     // Camera
     let camera, gl;
     const controlsCamera = useRef();
