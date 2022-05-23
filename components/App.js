@@ -7,11 +7,11 @@ import Vehicle from './Vehicle/Vehicle'
 const App = () => {
     return (
         <>
-            <Canvas dpr={[1, 1.5]} shadows camera={{position: [0, 5, 15], fov: 50}}>
+            <Canvas dpr={[1, 1.5]} shadows >
                 <fog attach="fog" args={['#171720', 10, 50]}/>
                 <color attach="background" args={['#171720']}/>
                 <ambientLight intensity={0.1}/>
-                <spotLight position={[10, 10, 10]} angle={0.5} intensity={1} castShadow penumbra={1}/>
+                <spotLight position={[10, 10, 10]} angle={4} intensity={1} castShadow penumbra={1}/>
                 <Physics broadphase="SAP" contactEquationRelaxation={4} friction={1e-3} allowSleep>
                     <Plane rotation={[-Math.PI / 2, 0, 0]} userData={{id: 'floor'}}/>
                     <Vehicle position={[0, 2, 0]} rotation={[0, -Math.PI / 4, 0]} angularVelocity={[0, 0.5, 0]}
@@ -20,7 +20,6 @@ const App = () => {
                 <Suspense fallback={null}>
                     <Environment preset="night"/>
                 </Suspense>
-                <OrbitControls/>
             </Canvas>
             <div style={{position: 'absolute', top: 30, left: 40}}>
         <pre>
