@@ -24,8 +24,6 @@ const App = () => {
             </Canvas>
             <div style={{position: 'absolute', top: 30, left: 40}}>
         <pre>
-          Must run fullscreen!
-          <br/>
           ZQSD to drive, space to brake
           <br/>R to reset
         </pre>

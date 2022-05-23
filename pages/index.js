@@ -4,7 +4,7 @@ import App from '../components/App'
 
 const Home = () => {
     return (
-        <div className={styles.container}>
+        <div className={styles.appContainer}>
             <Head>
                 <title>🚲 - THOMAS CARON</title>
                 <meta name="description" content="Vroum vroum, assassin de la police, vroum vroum, assassin au canabis"/>
