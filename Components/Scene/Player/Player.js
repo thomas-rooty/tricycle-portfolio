@@ -80,6 +80,8 @@ const Player = () => {
     // Player physical reference and properties (speed, jump height, ...)
     // I should move the bike accordingly to the movement of the playerRef
     const [playerRef, playerControls] = useBox(() => ({mass: 100, position: [0, 0, 0], scale: [0.5, 0.5, 0.5]}));
+    const bike = useFBX('/Bike.fbx');
+    const bikeRef = useRef();
     const basePlayerSpeed = 3;
     const sprintMultiplier = 1.5;
 
@@ -148,9 +150,9 @@ const Player = () => {
                     name="playerMesh"
                     ref={playerRef}
                     castShadow
+                    scale={[0.01, 0.01, 0.01]}
                 >
-                    <boxGeometry attach="geometry" args={[1, 1, 1]}/>
-                    <meshStandardMaterial attach="material" color="white"/>
+                    <primitive object={bike}/>
                 </mesh>
             </group>
         </>
