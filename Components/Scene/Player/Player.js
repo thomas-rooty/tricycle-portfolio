@@ -3,14 +3,14 @@ import {useSphere, useBox} from "@react-three/cannon";
 import {extend, useFrame, useThree} from '@react-three/fiber';
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import {useFBX} from "@react-three/drei";
+import {handleKeyboard, addEventListeners} from "../../Utils/handleKeyboard";
 
 const Player = () => {
-    //////////////////////////////////////
-    //     Keyboard and camera logic    //
-    //////////////////////////////////////
+    /////////////////////////
+    //     Camera logic    //
+    /////////////////////////
     let camera, gl;
     const controls = useRef();
-    const player = useRef();
     const CameraController = () => {
         extend({OrbitControls});
         return () => {
@@ -31,59 +31,22 @@ const Player = () => {
     };
     const CameraComponent = CameraController();
 
-    /* Keyboard events handler */
-    let keys = {
-        up: false,
-        down: false,
-        left: false,
-        right: false,
-        shift: false,
-    };
-
-    const updateKeyStates = (key, value) => {
-        switch (key) {
-            case 'z' :
-            case 'w' :
-            case 'ArrowUp' :
-                keys.up = value;
-                break;
-            case 's':
-            case 'ArrowDown':
-                keys.down = value;
-                break;
-            case 'q':
-            case 'a':
-            case 'ArrowLeft':
-                keys.left = value;
-                break;
-            case 'd':
-            case 'ArrowRight':
-                keys.right = value;
-                break;
-            case 'Shift':
-                keys.sprint = value;
-                break;
-        }
-    };
-
-    document.addEventListener('keydown', (e) => {
-        updateKeyStates(e.key, true);
-    });
-
-    document.addEventListener('keyup', (e) => {
-        updateKeyStates(e.key, false);
-    });
+    /////////////////////////
+    //   Keyboard logic    //
+    /////////////////////////
+    let {keys, updateKeyStates} = handleKeyboard();
+    addEventListeners(updateKeyStates);
 
     /////////////////////////
     //     Player logic    //
     /////////////////////////
-    // Player physical reference and properties (speed, jump height, ...)
-    // I should move the bike accordingly to the movement of the playerRef
+    // Variables and references
+    const basePlayerSpeed = 3;
+    const sprintMultiplier = 1.5;
+    const player = useRef();
     const [playerRef, playerControls] = useBox(() => ({mass: 100, position: [0, 0, 0], scale: [0.5, 0.5, 0.5]}));
     const bike = useFBX('/Bike.fbx');
     const bikeRef = useRef();
-    const basePlayerSpeed = 3;
-    const sprintMultiplier = 1.5;
 
     // Used to register the calculated player position after the player has moved with a certain velocity
     const playerPosition = useRef([0, 0, 0]);
