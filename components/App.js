@@ -1,8 +1,8 @@
 import React, {Suspense} from 'react'
 import {Canvas} from '@react-three/fiber'
-import {Physics, usePlane} from '@react-three/cannon'
+import {Physics, useCylinder, usePlane} from '@react-three/cannon'
 import {OrbitControls, Environment} from '@react-three/drei'
-import Vehicle from './Vehicle/Vehicle'
+import Vehicle from './Tricycle/Vehicle'
 
 const App = () => {
     return (
@@ -16,6 +16,7 @@ const App = () => {
                     <Plane rotation={[-Math.PI / 2, 0, 0]} userData={{id: 'floor'}}/>
                     <Vehicle position={[0, 2, 0]} rotation={[0, -Math.PI / 4, 0]} angularVelocity={[0, 0.5, 0]}
                              wheelRadius={0.3}/>
+                    <Pillar position={[-5, 2.5, -5]} userData={{ id: 'pillar-1' }} />
                 </Physics>
                 <Suspense fallback={null}>
                     <Environment preset="night"/>
@@ -28,6 +29,16 @@ const App = () => {
         </pre>
             </div>
         </>
+    )
+}
+
+const Pillar = ({ args = [0.7, 0.7, 5, 16], ...props }) => {
+    const [ref] = useCylinder(() => ({ mass: 1, args, ...props }))
+    return (
+        <mesh ref={ref} castShadow>
+            <cylinderGeometry args={args} />
+            <meshNormalMaterial />
+        </mesh>
     )
 }
 

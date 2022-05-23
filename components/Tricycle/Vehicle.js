@@ -31,7 +31,7 @@ const Vehicle = ({radius = 0.7, width = 1.2, height = -0.04, front = 1.5, back =
     };
     const CameraComponent = CameraController();
 
-    // Vehicle
+    // Tricycle
     const chassis = useRef()
     const wheel1 = useRef()
     const wheel2 = useRef()
