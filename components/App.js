@@ -4,6 +4,7 @@ import { Effects } from "./Effects/Effects";
 import { Physics, useBox, useCylinder, usePlane } from "@react-three/cannon";
 import { OrbitControls, Environment } from "@react-three/drei";
 import Vehicle from "./Tricycle/Vehicle";
+import Skatepark from "./Zones/Skatepark/Skatepark";
 
 const App = () => {
   return (
@@ -12,11 +13,18 @@ const App = () => {
         <Effects />
         <fog attach="fog" args={["#325a80", 10, 50]} />
         <color attach="background" args={["#325a80"]} />
-        <ambientLight intensity={0.1} />
+        <ambientLight intensity={0.4} />
         <spotLight
           position={[10, 10, 10]}
-          angle={0.8}
+          angle={0.4}
           intensity={1}
+          castShadow
+          penumbra={1}
+        />
+        <spotLight
+          position={[50, 50, 50]}
+          angle={0.4}
+          intensity={0.5}
           castShadow
           penumbra={1}
         />
@@ -33,8 +41,7 @@ const App = () => {
             angularVelocity={[0, 0.5, 0]}
             wheelRadius={0.3}
           />
-          <Ramp position={[-2, 2.5, 3]} userData={{ id: "ramp-1" }} />
-          <Ramp position={[0, 2.5, -5]} userData={{ id: "ramp-2" }} />
+          <Skatepark />
         </Physics>
         <Suspense fallback={null}>
           <Environment preset="night" />
@@ -47,16 +54,6 @@ const App = () => {
         </pre>
       </div>
     </>
-  );
-};
-
-const Ramp = ({ args = [2, 2, 2], ...props }) => {
-  const [ref] = useBox(() => ({ mass: 10, args, ...props }));
-  return (
-    <mesh ref={ref} castShadow>
-      <boxGeometry args={args} />
-      <meshNormalMaterial />
-    </mesh>
   );
 };
 

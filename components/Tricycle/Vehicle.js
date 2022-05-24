@@ -113,8 +113,8 @@ const Vehicle = ({
     // Move camera to vehicle
     camera.position.set(
       vehiclePosition.current[0],
-      vehiclePosition.current[1] + 4,
-      vehiclePosition.current[2] + 6
+      vehiclePosition.current[1] + 6.5,
+      vehiclePosition.current[2] + 9
     );
 
     // Controls steering, braking, and acceleration
