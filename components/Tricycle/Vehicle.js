@@ -88,7 +88,7 @@ const Vehicle = ({
     chassisConnectionPointLocal: [width / 2, height, back],
   };
 
-  const [vehicle, api] = useRaycastVehicle(() => ({
+  const [vehicle, vehicleApi] = useRaycastVehicle(() => ({
     chassisBody: chassis,
     wheels: [wheel1, wheel2, wheel3, wheel4],
     wheelInfos: [wheelInfo1, wheelInfo2, wheelInfo3, wheelInfo4],
@@ -118,22 +118,23 @@ const Vehicle = ({
     );
 
     // Controls steering, braking, and acceleration
-    const { forward, backward, left, right, brake, reset } = controls.current;
+    const { forward, backward, left, right, brake, reset } =
+      controls.current;
     for (let e = 2; e < 4; e++)
-      api.applyEngineForce(
+      vehicleApi.applyEngineForce(
         forward || backward ? force * (forward && !backward ? -1 : 1) : 0,
         2
       );
     for (let s = 0; s < 2; s++)
-      api.setSteeringValue(
+      vehicleApi.setSteeringValue(
         left || right ? steer * (left && !right ? 1 : -1) : 0,
         s
       );
-    for (let b = 2; b < 4; b++) api.setBrake(brake ? maxBrake : 0, b);
+    for (let b = 2; b < 4; b++) vehicleApi.setBrake(brake ? maxBrake : 0, b);
     if (reset) {
-      chassis.current.api.position.set(0, 0.5, 0);
+      chassis.current.api.position.set(0, 3, 0);
       chassis.current.api.velocity.set(0, 0, 0);
-      chassis.current.api.angularVelocity.set(0, 0.5, 0);
+      chassis.current.api.angularVelocity.set(0, 10, 0);
       chassis.current.api.rotation.set(0, -Math.PI / 4, 0);
     }
   });

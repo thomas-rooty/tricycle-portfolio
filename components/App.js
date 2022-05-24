@@ -34,11 +34,11 @@ const App = () => {
           friction={1e-3}
           allowSleep
         >
-          <Plane rotation={[-Math.PI / 2, 0, 0]} userData={{ id: "floor" }} />
+          <Floor rotation={[-Math.PI / 2, 0, 0]} userData={{ id: "floor" }} />
           <Vehicle
-            position={[0, 2, 0]}
+            position={[0, 3, 0]}
             rotation={[0, -Math.PI / 4, 0]}
-            angularVelocity={[0, 0.5, 0]}
+            angularVelocity={[0, 10, 0]}
             wheelRadius={0.3}
           />
           <Skatepark />
@@ -57,7 +57,7 @@ const App = () => {
   );
 };
 
-const Plane = (props) => {
+const Floor = (props) => {
   const [ref] = usePlane(() => ({
     type: "Static",
     material: "ground",
