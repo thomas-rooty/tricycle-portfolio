@@ -33,8 +33,8 @@ const App = () => {
             angularVelocity={[0, 0.5, 0]}
             wheelRadius={0.3}
           />
-          <Pillar position={[0, 2.5, -5]} userData={{ id: "pillar-2" }} />
-          <Pillar position={[-2, 2.5, 3]} userData={{ id: "pillar-1" }} />
+          <Ramp position={[-2, 2.5, 3]} userData={{ id: "ramp-1" }} />
+          <Ramp position={[0, 2.5, -5]} userData={{ id: "ramp-2" }} />
         </Physics>
         <Suspense fallback={null}>
           <Environment preset="night" />
@@ -50,7 +50,7 @@ const App = () => {
   );
 };
 
-const Pillar = ({ args = [2, 2, 2], ...props }) => {
+const Ramp = ({ args = [2, 2, 2], ...props }) => {
   const [ref] = useBox(() => ({ mass: 10, args, ...props }));
   return (
     <mesh ref={ref} castShadow>
