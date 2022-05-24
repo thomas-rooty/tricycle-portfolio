@@ -17,7 +17,7 @@ const App = () => {
         <spotLight
           position={[10, 10, 10]}
           angle={0.4}
-          intensity={1}
+          intensity={0.5}
           castShadow
           penumbra={1}
         />

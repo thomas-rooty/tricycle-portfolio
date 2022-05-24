@@ -1,7 +1,7 @@
 import { useBox } from "@react-three/cannon";
 import React from "react";
 
-export const Ramp = ({ args = [5, 7, 4.5], ...props }) => {
+const Ramp = ({ args = [5, 7, 4.5], ...props }) => {
   const [ref] = useBox(() => ({
     type: "Static",
     mass: 10,
