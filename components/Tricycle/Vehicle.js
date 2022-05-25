@@ -1,10 +1,13 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useContext } from "react";
 import { extend, useFrame, useThree } from "@react-three/fiber";
+import { useHelper } from "@react-three/drei";
 import { useRaycastVehicle } from "@react-three/cannon";
 import { useControls } from "../../utils/useControls";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import * as THREE from "three";
+import AppContext from "../AppContext";
 import Tricycle from "./Tricycle";
 import Wheel from "./Wheel";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 const Vehicle = ({
   radius = 0.7,
@@ -43,6 +46,10 @@ const Vehicle = ({
   };
   const CameraComponent = CameraController();
 
+  // Raycast
+  const coords = new THREE.Vector2(0.0019437878, -0.02558635);
+  const raycaster = new THREE.Raycaster();
+
   // Tricycle
   const chassis = useRef();
   const wheel1 = useRef();
@@ -50,6 +57,9 @@ const Vehicle = ({
   const wheel3 = useRef();
   const wheel4 = useRef();
   const controls = useControls();
+  const { raycastableObjects, updateRaycastableObjects } =
+    useContext(AppContext);
+  updateRaycastableObjects(chassis.current);
 
   const wheelInfo = {
     radius,
@@ -117,9 +127,14 @@ const Vehicle = ({
       vehiclePosition.current[2] + 9
     );
 
+    // Raycast from camera
+    raycaster.setFromCamera(coords, camera);
+    //const intersects = raycaster.intersectObjects(raycastableObjects[0]);
+    //if (intersects.length > 0) {
+    //  //console.log(coords);
+    //}
     // Controls steering, braking, and acceleration
-    const { forward, backward, left, right, brake, reset } =
-      controls.current;
+    const { forward, backward, left, right, brake, reset } = controls.current;
     for (let e = 2; e < 4; e++)
       vehicleApi.applyEngineForce(
         forward || backward ? force * (forward && !backward ? -1 : 1) : 0,

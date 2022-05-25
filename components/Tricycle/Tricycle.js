@@ -23,6 +23,7 @@ const Tricycle = forwardRef(
             !uncollidableShapes.includes(e.body.userData.id)
           ) {
             console.log("bonk", e.body.userData);
+            console.log(e);
           }
         },
         ...props,
