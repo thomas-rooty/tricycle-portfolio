@@ -6,7 +6,6 @@ import {OrbitControls, Environment} from "@react-three/drei";
 import Vehicle from "./Tricycle/Vehicle";
 import Skatepark from "./Zones/Skatepark/Skatepark";
 import SocialIcons from "./Zones/SocialNetworks/SocialIcon";
-import {element} from "three/examples/jsm/nodes/shadernode/ShaderNodeBaseElements";
 
 const App = () => {
 	return (
