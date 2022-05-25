@@ -1,5 +1,4 @@
 import React, { Suspense } from "react";
-import AppContext from "./AppContext";
 import { Canvas } from "@react-three/fiber";
 import { Effects } from "./Effects/Effects";
 import { Physics, useBox, useCylinder, usePlane } from "@react-three/cannon";
@@ -9,16 +8,6 @@ import Skatepark from "./Zones/Skatepark/Skatepark";
 import SocialIcons from "./Zones/SocialNetworks/SocialIcon";
 
 const App = () => {
-  const [raycastableObjects, setRaycastableObjects] = React.useState([]);
-  const updateRaycastableObjects = (object) => {
-    setRaycastableObjects([object]);
-  };
-  // Create an object to hold the global variables and functions to update them
-  const objects = {
-    raycastableObjects: raycastableObjects,
-    setRaycastableObjects,
-    updateRaycastableObjects,
-  };
   return (
     <>
       <Canvas dpr={[1, 1.5]} shadows>
@@ -46,7 +35,6 @@ const App = () => {
           friction={1e-3}
           allowSleep
         >
-          <AppContext.Provider value={objects}>
             <Floor rotation={[-Math.PI / 2, 0, 0]} userData={{ id: "floor" }} />
             <Vehicle
               position={[0, 3, 0]}
@@ -56,7 +44,6 @@ const App = () => {
             />
             <Skatepark />
             <SocialIcons />
-          </AppContext.Provider>
         </Physics>
         <Suspense fallback={null}>
           <Environment preset="night" />
