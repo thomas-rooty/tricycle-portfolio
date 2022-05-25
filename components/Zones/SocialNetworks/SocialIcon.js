@@ -1,9 +1,7 @@
 import React, {useEffect} from "react";
 import {useBox} from "@react-three/cannon";
-import AppContext from "../../AppContext";
 
 const SocialIcon = ({args, networkName, color, position}) => {
-	const context = React.useContext(AppContext);
 	const [ref] = useBox(() => ({
 		type: "Static",
 		mass: 1,
@@ -15,9 +13,6 @@ const SocialIcon = ({args, networkName, color, position}) => {
 			id: networkName,
 		},
 	}));
-	if (ref.current && ref.current.uuid) {
-		context.handleChange(ref.current);
-	}
 	return (
 		<mesh
 			ref={ref}
@@ -34,13 +29,6 @@ const SocialIcon = ({args, networkName, color, position}) => {
 };
 
 const SocialIcons = () => {
-	const context = React.useContext(AppContext);
-	const [forceRefresh, setForceRefresh] = React.useState(0);
-	useEffect(() => {
-		if (forceRefresh === 0) {
-			setForceRefresh(1);
-		}
-	}, [context.hoverableObjects]);
 	return (
 		<group position={[0, 0, 0]}>
 			<SocialIcon
