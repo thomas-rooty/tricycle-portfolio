@@ -21,9 +21,6 @@ const SocialIcon = ({args, networkName, color, position}) => {
 	return (
 		<mesh
 			ref={ref}
-			onPointerEnter={() => {
-				console.log("clicked", networkName);
-			}}
 			castShadow
 		>
 			<boxGeometry args={args}/>

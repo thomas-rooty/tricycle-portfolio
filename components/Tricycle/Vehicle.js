@@ -130,7 +130,7 @@ const Vehicle = ({
 		raycaster.setFromCamera(coords, camera);
 		const intersects = raycaster.intersectObjects(context.hoverableObjects && Object.keys(context.hoverableObjects).length > 0 ? context.hoverableObjects : [chassis.current]);
 		if (intersects.length > 0) {
-			console.log(intersects);
+			console.log(intersects[0].object.userData.id);
 		}
 		// Controls steering, braking, and acceleration
 		const {forward, backward, left, right, brake, reset} = controls.current;
