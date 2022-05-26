@@ -4,6 +4,7 @@ import {useHelper} from "@react-three/drei";
 import {useRaycastVehicle} from "@react-three/cannon";
 import {useControls} from "../../utils/useControls";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
+import AppContext from "../AppContext";
 import * as THREE from "three";
 import Tricycle from "./Tricycle";
 import Wheel from "./Wheel";
@@ -19,6 +20,8 @@ const Vehicle = ({
 	                 maxBrake = 1e5,
 	                 ...props
                  }) => {
+	// Context
+	const context = useContext(AppContext);
 	// Camera
 	let camera, gl;
 	const controlsCamera = useRef();
@@ -123,6 +126,12 @@ const Vehicle = ({
 			vehiclePosition.current[2] + 9
 		);
 
+		// Raycast from camera
+		raycaster.setFromCamera(coords, camera);
+		const intersects = raycaster.intersectObjects(context.hoverableObjects && Object.keys(context.hoverableObjects).length > 0 ? context.hoverableObjects : [chassis.current]);
+		if (intersects.length > 0) {
+			console.log(intersects[0].object.userData.id);
+		}
 		// Controls steering, braking, and acceleration
 		const {forward, backward, left, right, brake, reset} = controls.current;
 		for (let e = 2; e < 4; e++)

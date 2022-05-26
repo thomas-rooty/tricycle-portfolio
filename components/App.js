@@ -3,11 +3,19 @@ import {Canvas} from "@react-three/fiber";
 import {Effects} from "./Effects/Effects";
 import {Physics, useBox, useCylinder, usePlane} from "@react-three/cannon";
 import {OrbitControls, Environment} from "@react-three/drei";
+import AppContext from "./AppContext";
 import Vehicle from "./Tricycle/Vehicle";
 import Skatepark from "./Zones/Skatepark/Skatepark";
 import SocialIcons from "./Zones/SocialNetworks/SocialIcon";
 
 const App = () => {
+	const [hoverableObjects, setHoverableObjects] = React.useState([]);
+	const handleChange = (object) => {
+		const data = hoverableObjects.filter(element => element.uuid === object.uuid);
+		if (data.length === 0) {
+			setHoverableObjects([...hoverableObjects, object]);
+		}
+	};
 	return (
 		<>
 			<Canvas dpr={[1, 1.5]} shadows>
@@ -36,6 +44,7 @@ const App = () => {
 					allowSleep
 				>
 					<Floor rotation={[-Math.PI / 2, 0, 0]} userData={{id: "floor"}}/>
+					<AppContext.Provider value={{hoverableObjects, handleChange}}>
 						<Vehicle
 							position={[0, 3, 0]}
 							rotation={[0, -Math.PI / 4, 0]}
@@ -44,6 +53,7 @@ const App = () => {
 						/>
 						<Skatepark/>
 						<SocialIcons/>
+					</AppContext.Provider>
 				</Physics>
 				<Suspense fallback={null}>
 					<Environment preset="night"/>
