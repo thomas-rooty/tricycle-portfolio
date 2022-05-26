@@ -36,8 +36,8 @@ const Vehicle = ({
 				<orbitControls
 					ref={controlsCamera}
 					args={[camera, gl.domElement]}
-					enableZoom={false}
 					enableDamping
+					enableZoom={false}
 					enablePan={false}
 					enableRotate={false}
 					enabled
@@ -126,11 +126,15 @@ const Vehicle = ({
 			vehiclePosition.current[2] + 9
 		);
 
-		// Raycast from camera
+		// Raycast from camera for hovered objects detection
 		raycaster.setFromCamera(coords, camera);
 		const intersects = raycaster.intersectObjects(context.hoverableObjects && Object.keys(context.hoverableObjects).length > 0 ? context.hoverableObjects : [chassis.current]);
+
+		// Check for hovered object, if any then set it as hovered, then unset it if it's not hovered anymore
 		if (intersects.length > 0) {
-			console.log(intersects[0].object.userData.id);
+			context.handleHover(intersects[0].object.userData.id);
+		} else {
+			context.handleHover(null);
 		}
 		// Controls steering, braking, and acceleration
 		const {forward, backward, left, right, brake, reset} = controls.current;

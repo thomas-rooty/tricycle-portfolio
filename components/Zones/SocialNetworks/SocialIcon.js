@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import {useBox} from "@react-three/cannon";
 import AppContext from "../../AppContext";
+import {useFrame} from "@react-three/fiber";
 
 const SocialIcon = ({args, networkName, color, position}) => {
 	const context = React.useContext(AppContext);
@@ -15,9 +16,20 @@ const SocialIcon = ({args, networkName, color, position}) => {
 			id: networkName,
 		},
 	}));
-	if (ref.current && ref.current.uuid) {
-		context.handleChange(ref.current);
-	}
+
+	// Pass the hoverable object to the context api when they're set
+	useFrame(() => {
+		// Add the object to the hoverable objects if it's not already there
+		if (ref.current && ref.current.uuid) {
+			context.handleChange(ref.current);
+		}
+
+		// Check if the object is hovered by the tricycle
+		if (context.hoveredObject === ref.current.userData.id) {
+			console.log(ref.current.userData.id);
+		}
+	});
+
 	return (
 		<mesh
 			ref={ref}
@@ -34,13 +46,6 @@ const SocialIcon = ({args, networkName, color, position}) => {
 };
 
 const SocialIcons = () => {
-	const context = React.useContext(AppContext);
-	const [forceRefresh, setForceRefresh] = React.useState(0);
-	useEffect(() => {
-		if (forceRefresh === 0) {
-			setForceRefresh(1);
-		}
-	}, [context.hoverableObjects]);
 	return (
 		<group position={[0, 0, 0]}>
 			<SocialIcon

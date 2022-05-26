@@ -9,13 +9,21 @@ import Skatepark from "./Zones/Skatepark/Skatepark";
 import SocialIcons from "./Zones/SocialNetworks/SocialIcon";
 
 const App = () => {
+	// Handles the hoverable objects in the world and passes them to the context api
 	const [hoverableObjects, setHoverableObjects] = React.useState([]);
 	const handleChange = (object) => {
 		const data = hoverableObjects.filter(element => element.uuid === object.uuid);
 		if (data.length === 0) {
 			setHoverableObjects([...hoverableObjects, object]);
 		}
-	};
+	}
+
+	// Handles the hovered object by the tricycle
+	const [hoveredObject, setHoveredObject] = React.useState(null);
+	const handleHover = (object) => {
+		setHoveredObject(object);
+	}
+
 	return (
 		<>
 			<Canvas dpr={[1, 1.5]} shadows>
@@ -44,7 +52,7 @@ const App = () => {
 					allowSleep
 				>
 					<Floor rotation={[-Math.PI / 2, 0, 0]} userData={{id: "floor"}}/>
-					<AppContext.Provider value={{hoverableObjects, handleChange}}>
+					<AppContext.Provider value={{hoverableObjects, handleChange, hoveredObject, handleHover}}>
 						<Vehicle
 							position={[0, 3, 0]}
 							rotation={[0, -Math.PI / 4, 0]}
