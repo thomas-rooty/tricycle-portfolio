@@ -4,6 +4,7 @@ import AppContext from "../../AppContext";
 import {useFrame} from "@react-three/fiber";
 
 const SocialIcon = ({args, networkName, color, position}) => {
+	const [isObjectHovered, setIsObjectHovered] = React.useState(false);
 	const {handleChange, hoveredObject} = React.useContext(AppContext);
 	const [ref] = useBox(() => ({
 		type: "Static",
@@ -26,7 +27,9 @@ const SocialIcon = ({args, networkName, color, position}) => {
 
 		// Check if the object is hovered by the tricycle
 		if (hoveredObject === ref.current.userData.id) {
-			console.log(ref.current.userData.id);
+			setIsObjectHovered(true);
+		} else {
+			setIsObjectHovered(false);
 		}
 	});
 

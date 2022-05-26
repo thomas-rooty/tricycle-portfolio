@@ -27,7 +27,6 @@ const App = () => {
 	return (
 		<>
 			<Canvas dpr={[1, 1.5]} shadows>
-				<Effects/>
 				<fog attach="fog" args={["#325a80", 10, 50]}/>
 				<color attach="background" args={["#325a80"]}/>
 				<ambientLight intensity={0.4}/>
