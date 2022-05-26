@@ -21,7 +21,7 @@ const Vehicle = ({
 	                 ...props
                  }) => {
 	// Context
-	const context = useContext(AppContext);
+	const {handleHover, hoverableObjects} = useContext(AppContext);
 	// Camera
 	let camera, gl;
 	const controlsCamera = useRef();
@@ -128,13 +128,13 @@ const Vehicle = ({
 
 		// Raycast from camera for hovered objects detection
 		raycaster.setFromCamera(coords, camera);
-		const intersects = raycaster.intersectObjects(context.hoverableObjects && Object.keys(context.hoverableObjects).length > 0 ? context.hoverableObjects : [chassis.current]);
+		const intersects = raycaster.intersectObjects(hoverableObjects && Object.keys(hoverableObjects).length > 0 ? hoverableObjects : [chassis.current]);
 
 		// Check for hovered object, if any then set it as hovered, then unset it if it's not hovered anymore
 		if (intersects.length > 0) {
-			context.handleHover(intersects[0].object.userData.id);
+			handleHover(intersects[0].object.userData.id);
 		} else {
-			context.handleHover(null);
+			handleHover(null);
 		}
 		// Controls steering, braking, and acceleration
 		const {forward, backward, left, right, brake, reset} = controls.current;
