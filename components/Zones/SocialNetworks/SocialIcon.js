@@ -1,11 +1,14 @@
 import React, {useEffect} from "react";
 import {useBox} from "@react-three/cannon";
-import AppContext from "../../AppContext";
+import {useStore} from "../../ZuStore";
 import {useFrame} from "@react-three/fiber";
 
 const SocialIcon = ({args, networkName, color, position}) => {
-	const [isObjectHovered, setIsObjectHovered] = React.useState(false);
-	const {handleChange, hoveredObject} = React.useContext(AppContext);
+	// Use store
+	const addObjectAsHoverable = useStore(state => state.addObjectAsHoverable);
+	const hoveredObject = useStore(state => state.hoveredObject);
+
+	// Physics
 	const [ref] = useBox(() => ({
 		type: "Static",
 		mass: 1,
@@ -18,18 +21,15 @@ const SocialIcon = ({args, networkName, color, position}) => {
 		},
 	}));
 
+	useEffect(() => {
+		console.log(hoveredObject);
+	}, [hoveredObject]);
+
 	// Pass the hoverable object to the context api when they're set
 	useFrame(() => {
 		// Add the object to the hoverable objects if it's not already there
 		if (ref.current && ref.current.uuid) {
-			handleChange(ref.current);
-		}
-
-		// Check if the object is hovered by the tricycle
-		if (hoveredObject === ref.current.userData.id) {
-			setIsObjectHovered(true);
-		} else {
-			setIsObjectHovered(false);
+			addObjectAsHoverable(ref.current);
 		}
 	});
 

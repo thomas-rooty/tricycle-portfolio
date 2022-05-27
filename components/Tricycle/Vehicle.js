@@ -1,10 +1,11 @@
-import {useEffect, useRef, useContext} from "react";
+import {useEffect, useRef, useContext, useMemo} from "react";
 import {extend, useFrame, useThree} from "@react-three/fiber";
 import {useHelper} from "@react-three/drei";
 import {useRaycastVehicle} from "@react-three/cannon";
 import {useControls} from "../../utils/useControls";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
-import AppContext from "../AppContext";
+import {useStore} from "../ZuStore";
+import Debounce from 'lodash-es/debounce';
 import * as THREE from "three";
 import Tricycle from "./Tricycle";
 import Wheel from "./Wheel";
@@ -20,8 +21,11 @@ const Vehicle = ({
 	                 maxBrake = 1e5,
 	                 ...props
                  }) => {
-	// Context
-	const {handleHover, hoverableObjects} = useContext(AppContext);
+	// Use store
+	const setObjectAsHovered = useStore(state => state.setObjectAsHovered);
+	const hoveredObject = useStore(state => state.hoveredObject);
+	const hoverableObjects = useStore(state => state.hoverableObjects);
+
 	// Camera
 	let camera, gl;
 	const controlsCamera = useRef();
@@ -49,8 +53,12 @@ const Vehicle = ({
 	const CameraComponent = CameraController();
 
 	// Raycast
-	const coords = new THREE.Vector2(0.0019437878, -0.02558635);
-	const raycaster = new THREE.Raycaster();
+	const coords = useMemo(() =>
+		new THREE.Vector2(0.0019437878, -0.02558635)
+	);
+	const raycaster = useMemo(() =>
+		new THREE.Raycaster()
+	);
 
 	// Tricycle
 	const chassis = useRef();
@@ -128,14 +136,7 @@ const Vehicle = ({
 
 		// Raycast from camera for hovered objects detection
 		raycaster.setFromCamera(coords, camera);
-		const intersects = raycaster.intersectObjects(hoverableObjects && Object.keys(hoverableObjects).length > 0 ? hoverableObjects : [chassis.current]);
 
-		// Check for hovered object, if any then set it as hovered, then unset it if it's not hovered anymore
-		if (intersects.length > 0) {
-			handleHover(intersects[0].object.userData.id);
-		} else {
-			handleHover(null);
-		}
 		// Controls steering, braking, and acceleration
 		const {forward, backward, left, right, brake, reset} = controls.current;
 		for (let e = 2; e < 4; e++)
@@ -155,6 +156,15 @@ const Vehicle = ({
 			chassis.current.api.angularVelocity.set(0, 10, 0);
 			chassis.current.api.rotation.set(0, -Math.PI / 4, 0);
 		}
+
+		// Check for hovered object, if any then set it as hovered, then unset it if it's not hovered anymore
+		const intersects = raycaster.intersectObjects(hoverableObjects && Object.keys(hoverableObjects).length > 0 ? hoverableObjects : [chassis.current])
+		if (intersects.length > 0) {
+			setObjectAsHovered(intersects[0].object.userData.id)
+			return;
+		}
+		console.log("On remet à null");
+		setObjectAsHovered(null);
 	});
 
 	return (
