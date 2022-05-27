@@ -21,15 +21,20 @@ const SocialIcon = ({args, networkName, color, position}) => {
 		},
 	}));
 
-	useEffect(() => {
-		console.log(hoveredObject);
-	}, [hoveredObject]);
-
 	// Pass the hoverable object to the context api when they're set
 	useFrame(() => {
 		// Add the object to the hoverable objects if it's not already there
 		if (ref.current && ref.current.uuid) {
 			addObjectAsHoverable(ref.current);
+		}
+
+		// Handle the effect when hovered
+		if (hoveredObject === ref.current.userData.id) {
+			// Change color to black
+			ref.current.material.color.set(0x000000);
+		} else {
+			// Change back color to color
+			ref.current.material.color.set('#' + color);
 		}
 	});
 

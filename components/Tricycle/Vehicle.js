@@ -158,13 +158,14 @@ const Vehicle = ({
 		}
 
 		// Check for hovered object, if any then set it as hovered, then unset it if it's not hovered anymore
-		const intersects = raycaster.intersectObjects(hoverableObjects && Object.keys(hoverableObjects).length > 0 ? hoverableObjects : [chassis.current])
-		if (intersects.length > 0) {
-			setObjectAsHovered(intersects[0].object.userData.id)
-			return;
-		}
-		console.log("On remet à null");
-		setObjectAsHovered(null);
+		setTimeout(() => {
+			const intersects = raycaster.intersectObjects(hoverableObjects && Object.keys(hoverableObjects).length > 0 ? hoverableObjects : [chassis.current])
+			if (intersects.length > 0) {
+				setObjectAsHovered(intersects[0].object.userData.id)
+			} else {
+				setObjectAsHovered(null)
+			}
+		}, 1000);
 	});
 
 	return (
