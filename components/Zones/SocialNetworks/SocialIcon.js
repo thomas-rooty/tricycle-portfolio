@@ -1,5 +1,4 @@
-import React, {useEffect} from "react";
-import {useBox} from "@react-three/cannon";
+import React, {useEffect, useRef} from "react";
 import {useStore} from "../../ZuStore";
 import {useFrame} from "@react-three/fiber";
 import {useControls} from "../../../utils/useControls";
@@ -12,17 +11,7 @@ const SocialIcon = ({args, networkName, networkUrl, color, position}) => {
 	const hoveredObject = useStore(state => state.hoveredObject);
 
 	// Physics
-	const [ref] = useBox(() => ({
-		type: "Static",
-		mass: 1,
-		args: args,
-		position,
-		rotation: [0, 0, 0],
-		angularVelocity: [0, 0, 0],
-		userData: {
-			id: networkName,
-		},
-	}));
+	const ref = useRef();
 
 	// Pass the hoverable object to the context api when they're set
 	useFrame(() => {
@@ -54,6 +43,11 @@ const SocialIcon = ({args, networkName, networkUrl, color, position}) => {
 		<mesh
 			ref={ref}
 			castShadow
+			position={position}
+			rotation={[0, 0, 0]}
+			userData={{
+				id: networkName,
+			}}
 		>
 			<boxGeometry args={args}/>
 			<meshStandardMaterial
@@ -65,7 +59,7 @@ const SocialIcon = ({args, networkName, networkUrl, color, position}) => {
 	);
 };
 
-const SocialIcons = () => {
+const SocialIconsPads = () => {
 	return (
 		<group position={[0, 0, 0]}>
 			<SocialIcon
@@ -100,4 +94,4 @@ const SocialIcons = () => {
 	);
 };
 
-export default SocialIcons;
+export default SocialIconsPads;

@@ -5,7 +5,7 @@ import {Physics, useBox, useCylinder, usePlane} from "@react-three/cannon";
 import {OrbitControls, Environment} from "@react-three/drei";
 import Vehicle from "./Tricycle/Vehicle";
 import Skatepark from "./Zones/Skatepark/Skatepark";
-import SocialIcons from "./Zones/SocialNetworks/SocialIcon";
+import SocialIconsPads from "./Zones/SocialNetworks/SocialIcon";
 
 const App = () => {
 	return (
@@ -42,7 +42,7 @@ const App = () => {
 						wheelRadius={0.3}
 					/>
 					<Skatepark/>
-					<SocialIcons/>
+					<SocialIconsPads/>
 				</Physics>
 				<Suspense fallback={null}>
 					<Environment preset="night"/>
