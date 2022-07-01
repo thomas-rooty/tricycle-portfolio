@@ -21,6 +21,7 @@ export const useControls = () => {
     right: false,
     brake: false,
     reset: false,
+    interact: false,
   });
   useKeyPress(["ArrowUp", "z"], (pressed) => (keys.current.forward = pressed));
   useKeyPress(
@@ -31,5 +32,6 @@ export const useControls = () => {
   useKeyPress(["ArrowRight", "d"], (pressed) => (keys.current.right = pressed));
   useKeyPress([" "], (pressed) => (keys.current.brake = pressed));
   useKeyPress(["r"], (pressed) => (keys.current.reset = pressed));
+  useKeyPress(["Enter"], (pressed) => (keys.current.interact = pressed));
   return keys;
 };
