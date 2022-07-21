@@ -16,7 +16,7 @@ export const useStore = create((set) => ({
 	// Handles the current hovered object by the tricycle
 	hoveredObject: null,
 	setObjectAsHovered: (object) => {
-		set(state => {
+		set(() => {
 			return {
 				hoveredObject: object,
 			};

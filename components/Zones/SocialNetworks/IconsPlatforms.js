@@ -1,9 +1,10 @@
-import React, {useEffect, useRef} from "react";
+import React, {useRef} from "react";
 import {useStore} from "../../ZuStore";
 import {useFrame} from "@react-three/fiber";
 import {useControls} from "../../../utils/useControls";
+import Icons from "./IconsMesh/Instagram";
 
-const SocialIcon = ({args, networkName, networkUrl, color, position}) => {
+const IconsPlatforms = ({args, networkName, networkUrl, color, position}) => {
 	const controls = useControls();
 
 	// Use store
@@ -62,28 +63,29 @@ const SocialIcon = ({args, networkName, networkUrl, color, position}) => {
 const SocialIconsPads = () => {
 	return (
 		<group position={[0, 0, 0]}>
-			<SocialIcon
-				args={[2, 0.01, 2]}
+			<Icons/>
+			<IconsPlatforms
+				args={[3, 0.01, 2]}
 				networkName="instagram"
 				networkUrl="https://instagram.com/tho_macaron/"
 				color={"e5415f"}
 				position={[7, 0.01, 0]}
 			/>
-			<SocialIcon
+			<IconsPlatforms
 				args={[2, 0.01, 2]}
 				networkName="linkedin"
 				networkUrl="https://linkedin.com/in/dev-thomas-caron/"
 				color={"0176b5"}
 				position={[10.5, 0.01, 1.5]}
 			/>
-			<SocialIcon
+			<IconsPlatforms
 				args={[2, 0.01, 2]}
 				networkName="stackoverflow"
 				networkUrl="https://stackoverflow.com/users/15032117/rootkitty"
 				color={"fe7b17"}
 				position={[14, 0.01, 3]}
 			/>
-			<SocialIcon
+			<IconsPlatforms
 				args={[2, 0.01, 2]}
 				networkName="github"
 				networkUrl="https://github.com/thomas-rooty/"

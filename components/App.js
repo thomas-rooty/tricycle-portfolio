@@ -1,11 +1,10 @@
 import React, {Suspense} from "react";
 import {Canvas} from "@react-three/fiber";
-import {Effects} from "./Effects/Effects";
-import {Physics, useBox, useCylinder, usePlane} from "@react-three/cannon";
-import {OrbitControls, Environment} from "@react-three/drei";
+import {Physics, usePlane} from "@react-three/cannon";
+import {Environment} from "@react-three/drei";
 import Vehicle from "./Tricycle/Vehicle";
 import Skatepark from "./Zones/Skatepark/Skatepark";
-import SocialIconsPads from "./Zones/SocialNetworks/SocialIcon";
+import SocialIconsPads from "./Zones/SocialNetworks/IconsPlatforms";
 
 const App = () => {
 	return (
