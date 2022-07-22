@@ -79,18 +79,18 @@ const SocialIconsPads = () => {
 				position={[10.5, 0.01, 2]}
 			/>
 			<IconsPlatforms
-				args={[2, 0.01, 2]}
+				args={[3, 0.01, 3]}
 				networkName="stackoverflow"
 				networkUrl="https://stackoverflow.com/users/15032117/rootkitty"
 				color={"fe7b17"}
-				position={[14, 0.01, 3]}
+				position={[15, 0.01, 4]}
 			/>
 			<IconsPlatforms
-				args={[2, 0.01, 2]}
+				args={[3, 0.01, 3]}
 				networkName="github"
 				networkUrl="https://github.com/thomas-rooty/"
-				color={"33333b"}
-				position={[17.5, 0.01, 4.5]}
+				color={"4f4f57"}
+				position={[19.5, 0.01, 6]}
 			/>
 		</group>
 	);

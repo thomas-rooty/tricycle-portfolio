@@ -5,7 +5,7 @@
 import useSpline from '@splinetool/r3f-spline'
 
 const LinkedIn = ({ ...props }) => {
-  const { nodes, materials } = useSpline('https://prod.spline.design/zeG8cAAxEqM53SwF/scene.splinecode')
+  const { nodes, materials } = useSpline('https://prod.spline.design/mooCpt7BNXv14-J3/scene.splinecode')
   return (
     <>
       <group {...props} dispose={null}>
