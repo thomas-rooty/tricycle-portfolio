@@ -4,7 +4,7 @@
 
 import useSpline from '@splinetool/r3f-spline'
 
-const InstagramIcon = ({...props}) => {
+const Instagram = ({...props}) => {
 	const {nodes, materials} = useSpline('https://prod.spline.design/od2tglNboqEnA8P8/scene.splinecode')
 	return (
 		<>
@@ -196,4 +196,4 @@ const InstagramIcon = ({...props}) => {
 	)
 }
 
-export default InstagramIcon;
+export default Instagram;
