@@ -3,6 +3,7 @@ import React from "react";
 import Instagram from "./Mesh/Instagram";
 import LinkedIn from "./Mesh/LinkedIn";
 import GitHub from "./Mesh/GitHub";
+import Stackoverflow from "./Mesh/Stackoverflow";
 
 // Args is scale, position is x, y, z
 const Icons = () => {
@@ -39,6 +40,17 @@ const Icons = () => {
 		}
 	}));
 
+	// Stackoverflow physics box
+	const [stackoverflowRef] = useBox(() => ({
+		type: "Static",
+		args: [2, 3, 1],
+		position: [15.2, 0, 2.5],
+		rotation: [0, -0.2, 0],
+		userData: {
+			id: "stackoverflow",
+		}
+	}));
+
 	return (
 		<>
 			<group ref={instagramRef}>
@@ -54,6 +66,11 @@ const Icons = () => {
 			<group ref={githubRef}>
 				<GitHub
 					userData={{id: "github"}}
+				/>
+			</group>
+			<group ref={stackoverflowRef}>
+				<Stackoverflow
+					userData={{id: "stackoverflow"}}
 				/>
 			</group>
 		</>
