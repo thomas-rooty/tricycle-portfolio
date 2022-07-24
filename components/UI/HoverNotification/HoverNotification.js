@@ -9,7 +9,6 @@ const HoverNotification = () => {
 	// Press enter to add notification-pressed css class to the notification
 	const handleKeyDown = (e) => {
 		if (e.key === "Enter") {
-			console.log("coucou");
 			// Add notification-pressed class to the notification with id "notification"
 			document.getElementById("notification").classList.add("notification-pressed");
 			// After 1 second, remove the notification-pressed class

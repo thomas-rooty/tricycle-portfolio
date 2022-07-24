@@ -54,10 +54,10 @@ const Icons = () => {
 
 	useFrame(({clock}) => {
 		// Make the icons go up and down
-		instagramApi.position.set(6.15, (Math.sin(clock.getElapsedTime()) * 0.5) + 2.5, -1);
-		linkedinApi.position.set(10.5, (Math.sin(clock.getElapsedTime() + 5) * 0.5) + 2.5, 0.5);
-		githubApi.position.set(19.5, (Math.sin(clock.getElapsedTime() - 2) * 0.5) + 2.5, 4.5);
-		stackoverflowApi.position.set(15.2, (Math.sin(clock.getElapsedTime()) * 0.3) + 1, 2.5);
+		instagramApi.position.set(6.5, (Math.sin(clock.getElapsedTime()) * 0.5) + 2.5, -1.5);
+		linkedinApi.position.set(11.5, (Math.sin(clock.getElapsedTime() + 5) * 0.5) + 2.5, -1.5);
+		githubApi.position.set(21.5, (Math.sin(clock.getElapsedTime() - 2) * 0.5) + 2.5, -1.5);
+		stackoverflowApi.position.set(16.2, (Math.sin(clock.getElapsedTime()) * 0.3) + 1, -1.5);
 
 		// Make the icons rotate
 		instagramApi.rotation.set(0, Math.sin(clock.getElapsedTime()) * 0.4, 0);

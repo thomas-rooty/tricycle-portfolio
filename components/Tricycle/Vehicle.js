@@ -129,9 +129,9 @@ const Vehicle = ({
 
 		// Move camera to vehicle
 		camera.position.set(
-			vehiclePosition.current[0],
-			vehiclePosition.current[1] + 6.5,
-			vehiclePosition.current[2] + 9
+			vehiclePosition.current[0] + 1.33,
+			vehiclePosition.current[1] + 8.5,
+			vehiclePosition.current[2] + 7
 		);
 
 		// Raycast from camera for hovered objects detection
