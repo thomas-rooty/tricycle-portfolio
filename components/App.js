@@ -5,10 +5,12 @@ import {Environment} from "@react-three/drei";
 import Vehicle from "./Tricycle/Vehicle";
 import Skatepark from "./Zones/Skatepark/Skatepark";
 import SocialIconsPads from "./Zones/SocialNetworks/IconsPlatforms";
+import HoverNotification from "./UI/HoverNotification/HoverNotification";
 
 const App = () => {
 	return (
 		<>
+			<HoverNotification/>
 			<Canvas dpr={[1, 1.5]} shadows>
 				<fog attach="fog" args={["#325a80", 10, 50]}/>
 				<color attach="background" args={["#325a80"]}/>

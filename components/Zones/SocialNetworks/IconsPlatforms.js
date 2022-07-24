@@ -32,7 +32,7 @@ const IconsPlatforms = ({args, networkName, networkUrl, color, position}) => {
 			if (interact) {
 				setTimeout(() => {
 					window.open(networkUrl, "_blank");
-				}, 200);
+				}, 500);
 			}
 		} else {
 			// Reset color

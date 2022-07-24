@@ -18,7 +18,7 @@ const Vehicle = ({
 	                 back = -1.15,
 	                 steer = 0.75,
 	                 force = 2000,
-	                 maxBrake = 1e5,
+	                 maxBrake = 1e10,
 	                 ...props
                  }) => {
 	// Use store
@@ -157,7 +157,7 @@ const Vehicle = ({
 			chassis.current.api.rotation.set(0, -Math.PI / 4, 0);
 		}
 
-		// Check for hovered object, if any then set it as hovered, then unset it if it's not hovered anymore
+		// Check for hovered object when raycaster intersect, if any then set it as hovered, then unset it if it's not hovered anymore
 		setTimeout(() => {
 			const intersects = raycaster.intersectObjects(hoverableObjects && Object.keys(hoverableObjects).length > 0 ? hoverableObjects : [chassis.current])
 			if (intersects.length > 0) {
