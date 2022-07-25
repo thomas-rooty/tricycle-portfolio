@@ -1,6 +1,6 @@
 import React, {Suspense} from "react";
 import {Canvas} from "@react-three/fiber";
-import {Physics, usePlane} from "@react-three/cannon";
+import {Physics, Debug, usePlane} from "@react-three/cannon";
 import {Environment} from "@react-three/drei";
 import Vehicle from "./Tricycle/Vehicle";
 import Skatepark from "./Zones/Skatepark/Skatepark";
@@ -35,15 +35,17 @@ const App = () => {
 					friction={1e-3}
 					allowSleep
 				>
-					<Floor rotation={[-Math.PI / 2, 0, 0]} userData={{id: "floor"}}/>
-					<Vehicle
-						position={[0, 3, 0]}
-						rotation={[0, -Math.PI / 4, 0]}
-						angularVelocity={[0, 10, 0]}
-						wheelRadius={0.3}
-					/>
-					<Skatepark/>
-					<SocialIconsPads/>
+					<Debug color={0x00ff00} scale={1}>
+						<Floor rotation={[-Math.PI / 2, 0, 0]} userData={{id: "floor"}}/>
+						<Vehicle
+							position={[0, 3, 0]}
+							rotation={[0, -Math.PI / 4, 0]}
+							angularVelocity={[0, 10, 0]}
+							wheelRadius={0.3}
+						/>
+						<Skatepark/>
+						<SocialIconsPads/>
+					</Debug>
 				</Physics>
 				<Suspense fallback={null}>
 					<Environment preset="night"/>
