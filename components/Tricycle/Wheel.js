@@ -9,7 +9,7 @@ const Wheel = forwardRef(({ radius = 0.4, leftSide, ...props }, ref) => {
       type: "Kinematic",
       material: "wheel",
       collisionFilterGroup: 0,
-      args: [radius, radius, 0.5, 16],
+      args: [radius, radius, 0.25, 16],
       ...props,
     }),
     ref
