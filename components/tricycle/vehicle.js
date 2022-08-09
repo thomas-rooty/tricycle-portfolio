@@ -149,7 +149,7 @@ const Vehicle = ({
 				left || right ? steer * (left && !right ? 1 : -1) : 0,
 				s
 			);
-		// Stop 2 wheels (b)
+		// Stop 2 wheels
 		for (let b = 2; b < 4; b++) vehicleApi.setBrake(brake ? maxBrake : 0, b);
 		if (reset) {
 			chassis.current.api.position.set(0, 3, 0);
