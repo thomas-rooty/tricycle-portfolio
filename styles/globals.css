@@ -27,6 +27,8 @@ body {
 .notification {
     position: absolute;
     top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background: rgba(0, 0, 0, 0.2);
     border: 2px solid rgba(238, 238, 238, 0.8);
     width: fit-content;
