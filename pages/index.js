@@ -29,11 +29,14 @@ const Home = () => {
   return (
     <div className={styles.appContainer}>
       <Head>
-        <title>Thomas Caron: ride to discover me!</title>
+        <title>Thomas Caron - Ride to discover me!</title>
         <meta
           name="description"
           content="Vroum vroum, assassin de la police, vroum vroum, assassin au canabis"
         />
+        <meta property="og:image" content="/assets/icons/banner.png"/>
+        <meta property="og:title" content="Thomas Caron - Ride to discover me!"/>
+        <meta property="og:description" content="Fullstack developer living in Versailles, France. Student at IPSSI, developer at Quietalis, freelancer."/>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Hovernotification/>
