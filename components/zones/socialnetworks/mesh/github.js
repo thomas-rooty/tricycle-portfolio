@@ -3,11 +3,12 @@
 */
 
 import useSpline from '@splinetool/r3f-spline'
-import {useLoader} from '@react-three/fiber'
-import {TextureLoader} from 'three/src/loaders/TextureLoader'
+import {useTexture} from "@react-three/drei"
 
 const Github = ({...props}) => {
-	const colorMap = useLoader(TextureLoader, './octocat.png');
+	const colors = useTexture({
+		map: 'octocat.png'
+	})
 	const {nodes, materials} = useSpline('https://prod.spline.design/zeG8cAAxEqM53SwF/scene.splinecode')
 	return (
 		<>
@@ -21,7 +22,7 @@ const Github = ({...props}) => {
 						position={[0, 1.38, -0.72]}
 					>
 						<meshPhongMaterial
-							map={colorMap}
+							{...colors}
 							transparent
 						/>
 					</mesh>
