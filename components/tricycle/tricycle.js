@@ -10,7 +10,7 @@ useGLTF.preload("/tricycle.gltf");
 const uncollidableShapes = ["floor"];
 const Tricycle = forwardRef(
   ({ args = [1.7, 1, 2.2], mass = 500, ...props }, ref) => {
-    // Tricycle
+    // tricycle
     const { nodes, materials } = useGLTF("/tricycle.gltf");
     const [, api] = useBox(
       () => ({

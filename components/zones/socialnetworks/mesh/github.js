@@ -6,7 +6,7 @@ import useSpline from '@splinetool/r3f-spline'
 import {useLoader} from '@react-three/fiber'
 import {TextureLoader} from 'three/src/loaders/TextureLoader'
 
-const GitHub = ({...props}) => {
+const Github = ({...props}) => {
 	const colorMap = useLoader(TextureLoader, './octocat.png');
 	const {nodes, materials} = useSpline('https://prod.spline.design/zeG8cAAxEqM53SwF/scene.splinecode')
 	return (
@@ -42,4 +42,4 @@ const GitHub = ({...props}) => {
 	)
 }
 
-export default GitHub;
+export default Github;

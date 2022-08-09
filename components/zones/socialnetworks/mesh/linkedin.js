@@ -4,7 +4,7 @@
 
 import useSpline from '@splinetool/r3f-spline'
 
-const LinkedIn = ({ ...props }) => {
+const Linkedin = ({ ...props }) => {
   const { nodes, materials } = useSpline('https://prod.spline.design/mooCpt7BNXv14-J3/scene.splinecode')
   return (
     <>
@@ -55,4 +55,4 @@ const LinkedIn = ({ ...props }) => {
   )
 }
 
-export default LinkedIn;
+export default Linkedin;

@@ -4,7 +4,7 @@
 
 import useSpline from '@splinetool/r3f-spline'
 
-const JumpGrid = ({color, ...props}) => {
+const Jumpgrid = ({color, ...props}) => {
 	const {nodes, materials} = useSpline('https://prod.spline.design/A1U8mlI2LTYXLClw/scene.splinecode')
 	return (
 		<>
@@ -64,4 +64,4 @@ const JumpGrid = ({color, ...props}) => {
 	)
 }
 
-export default JumpGrid;
+export default Jumpgrid;

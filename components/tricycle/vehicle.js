@@ -4,11 +4,11 @@ import {useHelper} from "@react-three/drei";
 import {useRaycastVehicle} from "@react-three/cannon";
 import {useControls} from "../../utils/useControls";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
-import {useStore} from "../ZuStore";
+import {useStore} from "../zustore";
 import Debounce from 'lodash-es/debounce';
 import * as THREE from "three";
-import Tricycle from "./Tricycle";
-import Wheel from "./Wheel";
+import Tricycle from "./tricycle";
+import Wheel from "./wheel";
 
 const Vehicle = ({
 	                 radius = 0.7,
@@ -60,7 +60,7 @@ const Vehicle = ({
 		new THREE.Raycaster()
 	);
 
-	// Tricycle
+	// tricycle
 	const chassis = useRef();
 	const wheel1 = useRef();
 	const wheel2 = useRef();

@@ -1,9 +1,9 @@
 import {useBox} from "@react-three/cannon";
 import React from "react";
-import Instagram from "./Mesh/Instagram";
-import LinkedIn from "./Mesh/LinkedIn";
-import GitHub from "./Mesh/GitHub";
-import Stackoverflow from "./Mesh/Stackoverflow";
+import Instagram from "./mesh/instagram";
+import Linkedin from "./mesh/linkedin";
+import Github from "./mesh/github";
+import Stackoverflow from "./mesh/stackoverflow";
 import {useFrame} from "@react-three/fiber";
 
 // Args is scale, position is x, y, z
@@ -19,7 +19,7 @@ const Icons = () => {
 		}
 	}));
 
-	// LinkedIn physics box
+	// Linkedin physics box
 	const [linkedinRef, linkedinApi] = useBox(() => ({
 		type: "Static",
 		args: [2, 3, 1],
@@ -30,7 +30,7 @@ const Icons = () => {
 		}
 	}));
 
-	// GitHub physics box
+	// Github physics box
 	const [githubRef, githubApi] = useBox(() => ({
 		type: "Static",
 		args: [2, 3, 1],
@@ -74,12 +74,12 @@ const Icons = () => {
 				/>
 			</group>
 			<group ref={linkedinRef}>
-				<LinkedIn
+				<Linkedin
 					userData={{id: "linkedin"}}
 				/>
 			</group>
 			<group ref={githubRef}>
-				<GitHub
+				<Github
 					userData={{id: "github"}}
 				/>
 			</group>

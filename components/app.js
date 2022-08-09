@@ -2,15 +2,15 @@ import React, {Suspense} from "react";
 import {Canvas} from "@react-three/fiber";
 import {Physics, Debug, usePlane} from "@react-three/cannon";
 import {Environment} from "@react-three/drei";
-import Vehicle from "./Tricycle/Vehicle";
-import Skatepark from "./Zones/Skatepark/Skatepark";
-import SocialIconsPads from "./Zones/SocialNetworks/IconsPlatforms";
-import HoverNotification from "./UI/HoverNotification/HoverNotification";
+import Vehicle from "./tricycle/vehicle";
+import Skatepark from "./zones/skatepark/skatepark";
+import SocialIconsPads from "./zones/socialnetworks/iconsplatform";
+import Hovernotification from "./ui/hovernotification/hovernotification";
 
 const App = () => {
 	return (
 		<>
-			<HoverNotification/>
+			<Hovernotification/>
 			<Canvas dpr={[1, 1.5]} shadows>
 				<fog attach="fog" args={["#325a80", 10, 50]}/>
 				<color attach="background" args={["#325a80"]}/>

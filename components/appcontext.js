@@ -1,6 +1,6 @@
 import React from "react";
 
-const AppContext = React.createContext();
+const Appcontext = React.createContext();
 
 export const AppProvider = ({children}) => {
 	const [hoverableObjects, setHoverableObjects] = React.useState([]);
@@ -18,10 +18,10 @@ export const AppProvider = ({children}) => {
 	}
 
 	return (
-		<AppContext.Provider value={{hoverableObjects, addObjectAsHoverable, hoveredObject, handleHover}}>
+		<Appcontext.Provider value={{hoverableObjects, addObjectAsHoverable, hoveredObject, handleHover}}>
 			{children}
-		</AppContext.Provider>
+		</Appcontext.Provider>
 	)
 }
 
-export default AppContext;
+export default Appcontext;

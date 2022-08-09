@@ -1,12 +1,12 @@
 import React, {useRef} from "react";
-import {useStore} from "../../ZuStore";
+import {useStore} from "../../zustore";
 import {useFrame} from "@react-three/fiber";
 import {useControls} from "../../../utils/useControls";
 import {useState} from "react";
-import Icons from "./IconsMesh";
-import Pad from "./Pad";
+import Icons from "./iconsmesh";
+import Pad from "./pad";
 
-const IconsPlatforms = ({args, networkName, networkUrl, color, position}) => {
+const Iconsplatform = ({args, networkName, networkUrl, color, position}) => {
 	const controls = useControls();
 	const [padStrokePos, setPadStrokePos] = useState([position[0], position[1], position[2]]);
 
@@ -75,28 +75,28 @@ const SocialIconsPads = () => {
 	return (
 		<group position={[0, 0, 0]}>
 			<Icons/>
-			<IconsPlatforms
+			<Iconsplatform
 				args={[4, 0.01, 3]}
 				networkName="instagram"
 				networkUrl="https://instagram.com/tho_macaron/"
 				color={"82d3ff"}
 				position={[6.5, 0.01, 0.5]}
 			/>
-			<IconsPlatforms
+			<Iconsplatform
 				args={[4, 0.01, 3]}
 				networkName="linkedin"
 				networkUrl="https://linkedin.com/in/dev-thomas-caron/"
 				color={"82d3ff"}
 				position={[11.5, 0.01, 0.5]}
 			/>
-			<IconsPlatforms
+			<Iconsplatform
 				args={[4, 0.01, 3]}
 				networkName="stackoverflow"
 				networkUrl="https://stackoverflow.com/users/15032117/rootkitty"
 				color={"82d3ff"}
 				position={[16.5, 0.01, 0.5]}
 			/>
-			<IconsPlatforms
+			<Iconsplatform
 				args={[4, 0.01, 3]}
 				networkName="github"
 				networkUrl="https://github.com/thomas-rooty/"

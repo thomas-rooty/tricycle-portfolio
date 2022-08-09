@@ -1,8 +1,8 @@
 import React, {useEffect} from "react";
-import {useStore} from "../../ZuStore";
+import {useStore} from "../../zustore";
 
 // Check hoveredObject status in ZuStore and set hoveredStatus accordingly
-const HoverNotification = () => {
+const Hovernotification = () => {
 	const [showPopup, setShowPopup] = React.useState(false);
 	const hoveredObject = useStore(state => state.hoveredObject);
 
@@ -40,4 +40,4 @@ const HoverNotification = () => {
 	);
 }
 
-export default HoverNotification;
+export default Hovernotification;

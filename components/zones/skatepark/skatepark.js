@@ -1,6 +1,6 @@
 import {useBox} from "@react-three/cannon";
 import React from "react";
-import JumpGrid from "./JumpGrid";
+import Jumpgrid from "./jumpgrid";
 
 const Ramp = ({args = [5, 7, 4.5], ...props}) => {
 	const [ref] = useBox(() => ({
@@ -36,7 +36,7 @@ const JumpGridInstance = ({args = [6, 2, 1], ...props}) => {
 		<>
 			<group ref={leftBar}/>
 			<group ref={gridRef}>
-				<JumpGrid
+				<Jumpgrid
 					args={args}
 					color="#d1e8ff"
 					userData={{id: "jumpgrid-1"}}
