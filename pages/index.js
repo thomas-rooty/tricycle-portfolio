@@ -9,6 +9,7 @@ import Vehicle from "../components/tricycle/vehicle";
 import Skatepark from "../components/zones/skatepark/skatepark";
 import SocialIconsPads from "../components/zones/socialnetworks/iconsplatform";
 import Signs from "../components/zones/signs/signs";
+import RocketObject from "../components/zones/rocket/rocketObject";
 
 const Floor = (props) => {
 	const [ref] = usePlane(() => ({
@@ -78,6 +79,7 @@ const Home = () => {
 							<Skatepark/>
 							<SocialIconsPads/>
 							<Signs/>
+							<RocketObject/>
 						</Debug>
 					</Physics>
 				</Suspense>
