@@ -42,7 +42,7 @@ body {
 
 .notification-pressed {
     background: rgba(0, 0, 0, 0.4);
-    transform: scale(0.9);
+    transform: translate(-50%, -50%) scale(0.9);
 }
 
 .notification > p {
