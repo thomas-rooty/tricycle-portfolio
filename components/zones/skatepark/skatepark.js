@@ -1,6 +1,7 @@
 import {useBox} from "@react-three/cannon";
 import React from "react";
 import Jumpgrid from "./jumpgrid";
+import Barrier from "../barrier/mesh/barrier";
 
 const Ramp = ({args = [5, 7, 4.5], ...props}) => {
 	const [ref] = useBox(() => ({
@@ -47,6 +48,60 @@ const JumpGridInstance = ({args = [6, 2, 1], ...props}) => {
 	);
 }
 
+const _Barrier = ({args, position, rotation}) => {
+	const [barrierRef] = useBox(() => ({
+		type: "Static",
+		args,
+		position,
+		rotation,
+	}));
+
+	return (
+		<group ref={barrierRef}>
+			<Barrier/>
+		</group>
+	);
+}
+
+const Barriers = () => {
+	return (
+		<group>
+			{_Barrier({
+				args: [8, 4, 1],
+				position: [3, 0, -7],
+			})}
+			{_Barrier({
+				args: [8, 4, 1],
+				position: [3, 0, -13],
+			})}
+			{_Barrier({
+				args: [8, 4, 1],
+				position: [-23, 0, -7],
+			})}
+			{_Barrier({
+				args: [8, 4, 1],
+				position: [-23, 0, -13],
+			})}
+			{_Barrier({
+				args: [8, 4, 1],
+				position: [-5.5, 0, -7],
+			})}
+			{_Barrier({
+				args: [8, 4, 1],
+				position: [-5.5, 0, -13],
+			})}
+			{_Barrier({
+				args: [8, 4, 1],
+				position: [-14.5, 0, -7],
+			})}
+			{_Barrier({
+				args: [8, 4, 1],
+				position: [-14.5, 0, -13],
+			})}
+		</group>
+	);
+}
+
 const Skatepark = () => {
 	return (
 		<group>
@@ -64,6 +119,7 @@ const Skatepark = () => {
 				rotation={[0, 0, (-75 * Math.PI) / 180]}
 				userData={{id: "ramp-2"}}
 			/>
+			<Barriers/>
 		</group>
 	);
 };
