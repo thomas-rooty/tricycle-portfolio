@@ -10,22 +10,7 @@ import Skatepark from "../components/zones/skatepark/skatepark";
 import SocialIconsPads from "../components/zones/socialnetworks/iconsplatform";
 import Signs from "../components/zones/signs/signs";
 import RocketObject from "../components/zones/rocket/rocketObject";
-
-const Floor = (props) => {
-	const [ref] = usePlane(() => ({
-		type: "Static",
-		material: "ground",
-		...props,
-	}));
-	return (
-		<group ref={ref}>
-			<mesh receiveShadow>
-				<planeGeometry args={[1000, 1000]}/>
-				<meshStandardMaterial color="#5eb0ff"/>
-			</mesh>
-		</group>
-	);
-};
+import Floor from "../components/floor/floor";
 
 const Home = () => {
 	return (

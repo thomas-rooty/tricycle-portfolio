@@ -1,13 +1,11 @@
-import {useEffect, useRef, useContext, useMemo} from "react";
+import {useEffect, useRef, useMemo} from "react";
 import {extend, useFrame, useThree} from "@react-three/fiber";
-import {useHelper} from "@react-three/drei";
 import {useRaycastVehicle} from "@react-three/cannon";
 import {useControls} from "../../utils/useControls";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import {useStore} from "../zustore";
-import Debounce from 'lodash-es/debounce';
 import * as THREE from "three";
-import Tricycle from "./tricycle";
+import TricyclePhysics from "./tricyclePhysics";
 import Wheel from "./wheel";
 
 const Vehicle = ({
@@ -173,7 +171,7 @@ const Vehicle = ({
 		<>
 			<CameraComponent/>
 			<group ref={vehicle} position={[0, -0.4, 0]}>
-				<Tricycle
+				<TricyclePhysics
 					ref={chassis}
 					rotation={props.rotation}
 					position={props.position}
