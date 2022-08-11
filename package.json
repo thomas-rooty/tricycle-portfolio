@@ -36,9 +36,12 @@
     "@storybook/react": "^6.5.10",
     "@storybook/testing-library": "^0.0.13",
     "babel-loader": "^8.2.5",
+    "chromatic": "^6.7.4",
     "eslint": "8.14.0",
     "eslint-config-next": "12.1.6",
     "eslint-plugin-storybook": "^0.6.4",
     "next-transpile-modules": "^9.0.0"
-  }
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "3d-portfolio@0.1.0"
 }
