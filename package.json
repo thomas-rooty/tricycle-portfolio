@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "storybook": "start-storybook -s ./public -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook -s ./public"
   },
   "dependencies": {
     "@react-three/cannon": "^6.3.0",
