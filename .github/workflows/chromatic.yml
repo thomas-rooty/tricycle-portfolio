@@ -4,9 +4,12 @@
 name: 'Chromatic'
 
 # Event for the workflow
-on: push
+on:
+  push:
+    branches-ignore:
+      - 'main'
 
-# List of jobs
+      # List of jobs
 jobs:
   chromatic-deployment:
     # Operating System
