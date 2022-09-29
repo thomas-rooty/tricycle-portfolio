@@ -9,7 +9,7 @@ const Rocket = ({...props}) => {
 	return (
 		<>
 			<group {...props} scale={0.2} dispose={null}>
-				<group name="Rocket" position={[0, 100.45, 0]}>
+				<group name="Rocket" position={[0, 96, 0]}>
 					<group name="Pieds" position={[0, -83.95, 0]} rotation={[0, Math.PI / 4, 0]}>
 						<group name="Pied" position={[22.57, 4.55, 0]} rotation={[0, 0, -0.1]} scale={[0.1, 0.39, 0.08]}>
 							<mesh
