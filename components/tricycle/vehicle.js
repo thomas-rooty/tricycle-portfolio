@@ -11,7 +11,7 @@ import Wheel from "./wheel";
 const Vehicle = ({
 	                 radius = 0.7,
 	                 width = 1.2,
-	                 height = -0.04,
+	                 height = -0.1,
 	                 front = 1.3,
 	                 back = -1.15,
 	                 steer = 0.75,
@@ -21,13 +21,11 @@ const Vehicle = ({
                  }) => {
 	// Use store
 	const setObjectAsHovered = useStore(state => state.setObjectAsHovered);
-	const hoveredObject = useStore(state => state.hoveredObject);
 	const hoverableObjects = useStore(state => state.hoverableObjects);
 
 	// Camera
 	let camera, gl;
 	const controlsCamera = useRef();
-	const player = useRef();
 	const CameraController = () => {
 		extend({OrbitControls});
 		return () => {

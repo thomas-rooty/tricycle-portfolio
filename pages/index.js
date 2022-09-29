@@ -4,13 +4,14 @@ import Hovernotification from "../components/ui/hovernotification/hovernotificat
 import {Canvas} from "@react-three/fiber";
 import React, {Suspense} from "react";
 import Loader from "../components/ui/loadingpage/Loader";
-import {Physics, usePlane, Debug} from "@react-three/cannon";
+import {Physics, Debug} from "@react-three/cannon";
 import Vehicle from "../components/tricycle/vehicle";
 import Skatepark from "../components/zones/skatepark/skatepark";
 import SocialIconsPads from "../components/zones/socialnetworks/iconsplatform";
 import Signs from "../components/zones/signs/signs";
 import RocketObject from "../components/zones/rocket/rocketObject";
 import Floor from "../components/floor/floor";
+import LandingPage from "../components/ui/landingpage/LandingPage";
 
 const Home = () => {
 	return (
@@ -30,6 +31,7 @@ const Home = () => {
 			<Hovernotification/>
 			<Canvas dpr={[1, 1.5]} shadows>
 				<Suspense fallback={<Loader/>}>
+					<LandingPage/>
 					<fog attach="fog" args={["#325a80", 10, 50]}/>
 					<color attach="background" args={["#325a80"]}/>
 					<ambientLight intensity={0.4}/>
