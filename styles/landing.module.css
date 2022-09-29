@@ -1,0 +1,52 @@
+.landingPage {
+    width: 100vw;
+    height: 100vh;
+    background: #0f1d21;
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    pointer-events: none;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.hide {
+    animation: fadeOut 4s;
+    animation-fill-mode: forwards;
+}
+
+.landingPage_button {
+    padding: 15px 10px;
+    font-size: 16px;
+    letter-spacing: 25px;
+    border: 0.1rem solid white;
+    background: none;
+    color: white;
+    font-family: 'Kiona', sans-serif;
+    font-weight: normal;
+    pointer-events: all;
+}
+
+.landingPage_button:hover {
+    cursor: pointer;
+    border: 0.2rem solid white;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 1220px) {
+    .landingPage {
+        left: -66vw;
+    }
+}
