@@ -1,7 +1,7 @@
 .landingPage {
     width: 100vw;
     height: 100vh;
-    background: #0f1d21;
+    background: #69777e;
     display: flex;
     position: absolute;
     flex-direction: column;
@@ -11,6 +11,47 @@
     left: 0;
     z-index: 1001;
     pointer-events: none;
+}
+
+.wheelImg {
+    position: fixed;
+    top: -100%;
+    right: -100%;
+    left: -100%;
+    bottom: -100%;
+    margin: auto;
+    z-index: 1002;
+    width: 300px;
+    height: 300px;
+    animation: loading 2s linear infinite;
+}
+
+.rollingWheel {
+    animation: loading 2s linear infinite, glide 3s ease-in forwards!important;
+}
+
+@keyframes loading {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes glide {
+    from {
+        top: -100%;
+        right: -100%;
+        left: -100%;
+        bottom: -100%;
+    }
+    to {
+        top: -100%;
+        right: -200%;
+        left: 0;
+        bottom: -100%;
+    }
 }
 
 @keyframes fadeOut {
@@ -28,6 +69,8 @@
 }
 
 .landingPage_button {
+    position: absolute;
+    bottom: 60px;
     padding: 15px 10px;
     font-size: 16px;
     letter-spacing: 25px;
@@ -43,10 +86,4 @@
     cursor: pointer;
     border: 0.2rem solid white;
     font-weight: bold;
-}
-
-@media screen and (max-width: 1220px) {
-    .landingPage {
-        left: -66vw;
-    }
 }
