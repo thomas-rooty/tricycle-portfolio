@@ -5,8 +5,15 @@ import Image from "next/future/image";
 import Wheel from "../../../public/assets/icons/wheel.png";
 
 const LandingPage = () => {
+	// Wheel sound effect
+	const wheelSound = new Audio("/assets/sounds/free_hub.mp3");
+
 	// Add click event listener to the button to hide the landing page
 	const hideLandingPage = () => {
+		// Play the wheel sound effect
+		wheelSound.play();
+
+		// Hide the landing page
 		const landingPage = document.getElementById("id_landingPage");
 		const landingPageButton = document.getElementById("id_landingPageButton");
 		const wheel = document.getElementById("id_wheel");
