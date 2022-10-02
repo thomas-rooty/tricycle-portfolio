@@ -1,8 +1,6 @@
 import { forwardRef } from "react";
 import { useBox } from "@react-three/cannon";
 import Tricycle from "./mesh/tricycle";
-import Arcade from "./mesh/arcade";
-
 const uncollidableShapes = ["floor"];
 const TricyclePhysics = forwardRef(
   ({ args = [1.7, 1, 2.2], mass = 500, ...props }, ref) => {
@@ -27,7 +25,7 @@ const TricyclePhysics = forwardRef(
     );
     return (
       <mesh ref={ref} api={api}>
-        <Arcade />
+        <Tricycle />
       </mesh>
     );
   }
