@@ -14,6 +14,8 @@ import Floor from "../components/floor/floor";
 import LandingPage from "../components/ui/landingpage/LandingPage";
 
 const Home = () => {
+	// If localhost, set dev to true
+	const dev = window.location.hostname === "localhost";
 	return (
 		<div className={styles.appContainer}>
 			<Head>
@@ -55,19 +57,36 @@ const Home = () => {
 						friction={1e-3}
 						allowSleep
 					>
-						<Debug scale={1} color="white">
-							<Floor rotation={[-Math.PI / 2, 0, 0]} userData={{id: "floor"}}/>
-							<Vehicle
-								position={[0, 3, 0]}
-								rotation={[0, -Math.PI / 4, 0]}
-								angularVelocity={[0, 10, 0]}
-								wheelRadius={0.3}
-							/>
-							<Skatepark/>
-							<SocialIconsPads/>
-							<Signs/>
-							<RocketObject/>
-						</Debug>
+						{dev &&
+							<Debug scale={1} color="white">
+								<Floor rotation={[-Math.PI / 2, 0, 0]} userData={{id: "floor"}}/>
+								<Vehicle
+									position={[0, 3, 0]}
+									rotation={[0, -Math.PI / 4, 0]}
+									angularVelocity={[0, 10, 0]}
+									wheelRadius={0.3}
+								/>
+								<Skatepark/>
+								<SocialIconsPads/>
+								<Signs/>
+								<RocketObject/>
+							</Debug>
+						}
+						{!dev &&
+							<>
+								<Floor rotation={[-Math.PI / 2, 0, 0]} userData={{id: "floor"}}/>
+								<Vehicle
+									position={[0, 3, 0]}
+									rotation={[0, -Math.PI / 4, 0]}
+									angularVelocity={[0, 10, 0]}
+									wheelRadius={0.3}
+								/>
+								<Skatepark/>
+								<SocialIconsPads/>
+								<Signs/>
+								<RocketObject/>
+							</>
+						}
 					</Physics>
 				</Suspense>
 			</Canvas>
