@@ -24,11 +24,13 @@ export const useControls = () => {
     interact: false,
   });
   useKeyPress(["ArrowUp", "z"], (pressed) => (keys.current.forward = pressed));
+  useKeyPress(["ArrowUp", "w"], (pressed) => (keys.current.forward = pressed));
   useKeyPress(
     ["ArrowDown", "s"],
     (pressed) => (keys.current.backward = pressed)
   );
   useKeyPress(["ArrowLeft", "q"], (pressed) => (keys.current.left = pressed));
+  useKeyPress(["ArrowLeft", "a"], (pressed) => (keys.current.left = pressed));
   useKeyPress(["ArrowRight", "d"], (pressed) => (keys.current.right = pressed));
   useKeyPress([" "], (pressed) => (keys.current.brake = pressed));
   useKeyPress(["r"], (pressed) => (keys.current.reset = pressed));
