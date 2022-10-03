@@ -71,7 +71,8 @@ const Home = () => {
 			</Canvas>
 			<div style={{position: "absolute", top: 30, left: 40}}>
         <pre>
-          ZQSD to drive, space to brake
+          ZQSD, WASD or ↑ ← ↓ → to drive
+	        <br/>space to brake, enter to interact
           <br/>R to reset
         </pre>
 			</div>
