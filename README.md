@@ -19,7 +19,7 @@
   <p align="center">
     Made for fun, experiment, and to learn more about 3D rendering.
     <br />
-    <a href="https://github.com/thomas-rooty/tricycle-portfolio"><strong>Explore the docs »</strong></a>
+    <a href="https://62f4c86d2f8ca00d4519f010-rgufjtuukc.chromatic.com/"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://3d.tcaron.fr">View Demo</a>
