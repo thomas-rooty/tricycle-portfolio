@@ -2,6 +2,7 @@ import create from 'zustand';
 
 export const useStore = create((set) => ({
 	// Add an object to the hoverable objects array
+	// Everything in this list will become a hoverable object
 	hoverableObjects: [],
 	addObjectAsHoverable: (object) => {
 		//hoverableObjects.filter(element => element.uuid === object.uuid).length === 0 &&
@@ -19,6 +20,16 @@ export const useStore = create((set) => ({
 		set(() => {
 			return {
 				hoveredObject: object,
+			};
+		});
+	},
+
+	// Store the current direction of the tricycle (left or right)
+	direction: null,
+	setDirection: (direction) => {
+		set(() => {
+			return {
+				direction: direction,
 			};
 		});
 	},

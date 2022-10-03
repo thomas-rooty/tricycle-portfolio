@@ -55,25 +55,24 @@ const Home = () => {
 						friction={1e-3}
 						allowSleep
 					>
-						<Debug scale={1} color="white">
-							<Floor rotation={[-Math.PI / 2, 0, 0]} userData={{id: "floor"}}/>
-							<Vehicle
-								position={[0, 3, 0]}
-								rotation={[0, -Math.PI / 4, 0]}
-								angularVelocity={[0, 10, 0]}
-								wheelRadius={0.3}
-							/>
-							<Skatepark/>
-							<SocialIconsPads/>
-							<Signs/>
-							<RocketObject/>
-						</Debug>
+						<Floor rotation={[-Math.PI / 2, 0, 0]} userData={{id: "floor"}}/>
+						<Vehicle
+							position={[0, 3, 0]}
+							rotation={[0, -Math.PI / 4, 0]}
+							angularVelocity={[0, 10, 0]}
+							wheelRadius={0.3}
+						/>
+						<Skatepark/>
+						<SocialIconsPads/>
+						<Signs/>
+						<RocketObject/>
 					</Physics>
 				</Suspense>
 			</Canvas>
 			<div style={{position: "absolute", top: 30, left: 40}}>
         <pre>
-          ZQSD to drive, space to brake
+          ZQSD, WASD or ↑ ← ↓ → to drive
+	        <br/>space to brake, enter to interact
           <br/>R to reset
         </pre>
 			</div>
