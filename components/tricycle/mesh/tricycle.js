@@ -16,13 +16,13 @@ const Tricycle = () => {
 			// Set rotation to -45 degrees using Math.PI
 			setRotation([0, Math.PI / 6, 0]);
 			// Compensate for the rotation by moving the pivot point
-			setPivotPosition([-0.8, 0, 0.5]);
+			setPivotPosition([-0.8, 0, 0.2]);
 		}
 		if (direction === "right") {
 			// Set rotation to 45 degrees using Math.PI
 			setRotation([0, Math.PI / -6, 0]);
 			// Compensate for the rotation by moving the pivot point
-			setPivotPosition([0.8, 0, 0.5]);
+			setPivotPosition([0.7, 0, 0.2]);
 		}
 		if (direction === "none") {
 			setRotation([0, 0, 0]);
