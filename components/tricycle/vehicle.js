@@ -176,7 +176,7 @@ const Vehicle = ({
 			} else {
 				setObjectAsHovered(null)
 			}
-		}, 1000);
+		}, 100);
 	});
 
 	return (
