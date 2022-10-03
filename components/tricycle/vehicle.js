@@ -144,7 +144,7 @@ const Vehicle = ({
 		if (right) {
 			setDirection("right");
 		}
-		if (!left && !right && !forward && !backward) {
+		if (!left && !right) {
 			setDirection("none");
 		}
 
