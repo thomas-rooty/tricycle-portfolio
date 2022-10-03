@@ -22,6 +22,7 @@ const Vehicle = ({
 	// Use store
 	const setObjectAsHovered = useStore(state => state.setObjectAsHovered);
 	const hoverableObjects = useStore(state => state.hoverableObjects);
+	const setDirection = useStore(state => state.setDirection);
 
 	// Camera
 	let camera, gl;
@@ -133,8 +134,21 @@ const Vehicle = ({
 		// Raycast from camera for hovered objects detection
 		raycaster.setFromCamera(coords, camera);
 
-		// Controls steering, braking, and acceleration
+		// Init controls
 		const {forward, backward, left, right, brake, reset} = controls.current;
+
+		// Store direction of the vehicle
+		if (left) {
+			setDirection("left");
+		}
+		if (right) {
+			setDirection("right");
+		}
+		if (!left && !right && !forward && !backward) {
+			setDirection("none");
+		}
+
+		// Controls steering, braking, and acceleration
 		for (let e = 2; e < 4; e++)
 			vehicleApi.applyEngineForce(
 				forward || backward ? force * (forward && !backward ? -1 : 1) : 0,
