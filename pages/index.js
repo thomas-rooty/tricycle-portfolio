@@ -55,6 +55,7 @@ const Home = () => {
 						friction={1e-3}
 						allowSleep
 					>
+						<Debug scale={1} color="white">
 							<Floor rotation={[-Math.PI / 2, 0, 0]} userData={{id: "floor"}}/>
 							<Vehicle
 								position={[0, 3, 0]}
@@ -66,6 +67,7 @@ const Home = () => {
 							<SocialIconsPads/>
 							<Signs/>
 							<RocketObject/>
+						</Debug>
 					</Physics>
 				</Suspense>
 			</Canvas>
