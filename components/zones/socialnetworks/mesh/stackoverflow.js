@@ -8,7 +8,7 @@ const Stackoverflow = ({...props}) => {
 	const {nodes, materials} = useSpline('https://prod.spline.design/Iyeajy6gqDiubwQb/scene.splinecode')
 	return (
 		<>
-			<group {...props} dispose={null} scale={0.012}>
+			<group {...props} dispose={null} position={[0.15, 0, 0]} scale={0.012}>
 				<mesh
 					name="Orange_bar_3 2"
 					geometry={nodes['Orange_bar_3 2'].geometry}

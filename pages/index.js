@@ -14,6 +14,8 @@ import Floor from "../components/floor/floor";
 import LandingPage from "../components/ui/landingpage/LandingPage";
 
 const Home = () => {
+	console.log(process.env.ENVIRONMENT);
+
 	return (
 		<div className={styles.appContainer}>
 			<Head>
@@ -58,17 +60,19 @@ const Home = () => {
 						friction={1e-3}
 						allowSleep
 					>
-						<Floor rotation={[-Math.PI / 2, 0, 0]} userData={{id: "floor"}}/>
-						<Vehicle
-							position={[0, 3, 0]}
-							rotation={[0, -Math.PI / 4, 0]}
-							angularVelocity={[0, 10, 0]}
-							wheelRadius={0.3}
-						/>
-						<Skatepark/>
-						<SocialIconsPads/>
-						<Signs/>
-						<RocketObject/>
+						<Debug color="white" scale={1}>
+							<Floor rotation={[-Math.PI / 2, 0, 0]} userData={{id: "floor"}}/>
+							<Vehicle
+								position={[0, 3, 0]}
+								rotation={[0, -Math.PI / 4, 0]}
+								angularVelocity={[0, 10, 0]}
+								wheelRadius={0.3}
+							/>
+							<Skatepark/>
+							<SocialIconsPads/>
+							<Signs/>
+							<RocketObject/>
+						</Debug>
 					</Physics>
 				</Suspense>
 			</Canvas>

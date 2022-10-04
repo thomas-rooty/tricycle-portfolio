@@ -11,7 +11,7 @@ const Icons = () => {
 	// Instagram physics box
 	const [instagramRef, instagramApi] = useBox(() => ({
 		type: "Static",
-		args: [2, 3, 1],
+		args: [2.5, 3, 1],
 		position: [6.15, 1.5, -1],
 		rotation: [0, -0.12, 0],
 		userData: {
@@ -19,10 +19,10 @@ const Icons = () => {
 		}
 	}));
 
-	// Linkedin physics box
+	// LinkedIn physics box
 	const [linkedinRef, linkedinApi] = useBox(() => ({
 		type: "Static",
-		args: [2, 3, 1],
+		args: [2.5, 3, 1],
 		position: [10.5, 1.15, 0.5],
 		rotation: [0, 0.25, 0],
 		userData: {
@@ -30,10 +30,10 @@ const Icons = () => {
 		}
 	}));
 
-	// Github physics box
+	// GitHub physics box
 	const [githubRef, githubApi] = useBox(() => ({
 		type: "Static",
-		args: [2, 3, 1],
+		args: [2.5, 3, 1],
 		position: [19.5, 1.15, 4.5],
 		rotation: [0, -0.1, 0],
 		userData: {
@@ -44,7 +44,7 @@ const Icons = () => {
 	// Stackoverflow physics box
 	const [stackoverflowRef, stackoverflowApi] = useBox(() => ({
 		type: "Static",
-		args: [2, 3, 1],
+		args: [2.5, 3, 1],
 		position: [15.2, 0, 2.5],
 		rotation: [0, -0.2, 0],
 		userData: {

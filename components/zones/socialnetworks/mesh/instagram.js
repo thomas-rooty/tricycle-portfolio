@@ -9,7 +9,7 @@ const Instagram = ({...props}) => {
 	return (
 		<>
 			<group {...props} dispose={null}>
-				<group name="Instagram" scale={0.05}>
+				<group name="Instagram" position={[0.15, 0, 0]} scale={0.05}>
 					<group name="Upper_Photo" position={[12.88, 13.28, 0]}>
 						<mesh
 							name="Upper_photo_inner"
