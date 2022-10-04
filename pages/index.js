@@ -20,9 +20,12 @@ const Home = () => {
 				<title>Thomas Caron - Ride to discover me!</title>
 				<meta
 					name="description"
-					content="Vroum vroum, assassin de la police, vroum vroum, assassin au canabis"
+					content="Fullstack developer living in Versailles, France. Student at IPSSI, developer at Quietalis, freelancer."
 				/>
 				<meta property="og:image" content="/assets/icons/banner.png"/>
+				<meta itemProp="image" content="/assets/icons/banner.png"/>
+				<meta itemProp="title" content="Thomas Caron - 3D Portfolio"/>
+				<meta name="twitter:image" content="/assets/icons/banner.png"/>
 				<meta property="og:title" content="Thomas Caron - Ride to discover me!"/>
 				<meta property="og:description"
 				      content="Fullstack developer living in Versailles, France. Student at IPSSI, developer at Quietalis, freelancer."/>
