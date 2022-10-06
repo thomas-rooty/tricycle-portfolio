@@ -6,10 +6,12 @@ import {useStore} from "../../zustore";
 import {useFrame} from "@react-three/fiber";
 import {useControls} from "../../../utils/useControls";
 import Pad from "../socialnetworks/pad";
+import styles from "../../../styles/rocket.module.css";
 
 const ActivationpPlatform = ({args, color, position}) => {
     const controls = useControls();
     const [padStrokePos, setPadStrokePos] = useState([position[0], position[1], position[2]]);
+    const [alreadyActivated, setAlreadyActivated] = useState(false);
 
     // Use store
     const addObjectAsHoverable = useStore(state => state.addObjectAsHoverable);
@@ -30,11 +32,34 @@ const ActivationpPlatform = ({args, color, position}) => {
 
         // Handle the actions when hovered
         if (hoveredObject === pad.current.userData.id) {
+
             // Open the url in a new tab
             if (interact) {
-                setTimeout(() => {
-                    window.open('https://3dxp.tcaron.fr', "_blank");
-                }, 500);
+                if (!alreadyActivated) {
+                    // Set the already activated state to true to prevent multiple activations
+                    setAlreadyActivated(true);
+
+                    // Start the trip
+                    // Rocket take off sound effect
+                    const rocketTakeOffSound = new Audio("/assets/sounds/rocket_taking_off_4s.mp3");
+                    rocketTakeOffSound.play();
+
+                    // Add shakeSoft class to the body for 16000 seconds, then remove it
+                    const body = document.querySelector('body');
+                    body.classList.add(styles.shakeSoft);
+
+                    // Open the url in a new tab after 16 seconds
+                    setTimeout(() => {
+                        body.classList.remove(styles.shakeSoft);
+                        window.open("https://3dxp.tcaron.fr", "_blank");
+                        console.log("Open the url in a new tab");
+                    }, 4000);
+                } else {
+                    // Can be reactivated after 4 seconds
+                    setTimeout(() => {
+                        setAlreadyActivated(false);
+                    }, 4000);
+                }
             }
         } else {
             // Reset color
