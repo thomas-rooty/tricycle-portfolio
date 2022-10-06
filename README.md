@@ -17,7 +17,7 @@
 <h3 align="center">3D Rendered Portfolio</h3>
 
   <p align="center">
-    Made for fun, experiment, and to learn more about 3D rendering.
+    Made for fun, experimentation, and to learn more about 3D rendering in a web context.
     <br />
     <a href="https://62f4c86d2f8ca00d4519f010-rgufjtuukc.chromatic.com/"><strong>Explore the docs »</strong></a>
     <br />
