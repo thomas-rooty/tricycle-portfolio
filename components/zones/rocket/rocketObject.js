@@ -6,6 +6,7 @@ import {useStore} from "../../zustore";
 import {useFrame} from "@react-three/fiber";
 import {useControls} from "../../../utils/useControls";
 import Pad from "../socialnetworks/pad";
+import initTrip from "./initTrip";
 
 const ActivationpPlatform = ({args, color, position}) => {
     const controls = useControls();
@@ -30,11 +31,16 @@ const ActivationpPlatform = ({args, color, position}) => {
 
         // Handle the actions when hovered
         if (hoveredObject === pad.current.userData.id) {
+
             // Open the url in a new tab
             if (interact) {
+                // Start shaking the screen
+                initTrip();
+
+                // Open the url in a new tab
                 setTimeout(() => {
                     window.open('https://3dxp.tcaron.fr', "_blank");
-                }, 500);
+                }, 4000);
             }
         } else {
             // Reset color
