@@ -1,4 +1,4 @@
-@keyframes tilt-n-move-shaking {
+@keyframes shaking-hard {
     0% { transform: translate(0, 0) rotate(0deg); }
     25% { transform: translate(5px, 5px) rotate(5deg); }
     50% { transform: translate(0, 0) rotate(0deg); }
@@ -6,6 +6,18 @@
     100% { transform: translate(0, 0) rotate(0deg); }
 }
 
-.shake {
-    animation: tilt-n-move-shaking 0.5s infinite;
+@keyframes shaking-soft {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(2px, 2px) rotate(2deg); }
+    50% { transform: translate(0, 0) rotate(0deg); }
+    75% { transform: translate(-2px, 2px) rotate(-2deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+.shakeSoft {
+    animation: shaking-soft 0.2s infinite;
+}
+
+.shakeHard {
+    animation: shaking-hard 0.5s infinite;
 }
