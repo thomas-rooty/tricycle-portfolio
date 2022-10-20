@@ -8,7 +8,7 @@ import {useControls} from "../../../utils/useControls";
 import Pad from "../socialnetworks/pad";
 import styles from "../../../styles/rocket.module.css";
 
-const ActivationpPlatform = ({args, color, position}) => {
+const ActivationPlatform = ({args, color, position}) => {
     const controls = useControls();
     const [padStrokePos, setPadStrokePos] = useState([position[0], position[1], position[2]]);
     const [alreadyActivated, setAlreadyActivated] = useState(false);
@@ -169,7 +169,7 @@ const RocketObject = () => {
     return (
         <group ref={rocketRef}>
             <Rocket/>
-            <ActivationpPlatform
+            <ActivationPlatform
                 args={[5, 1, 10]} // width, height, depth of the platform (under the rocket)
                 color={'ffffff'}
                 position={[0, 0, 0]} // x, y, z relating to the rocket position
