@@ -14,6 +14,6 @@ export const Effects = () => {
         height={480}
       />
       <SSAO />
-    </EffectComposer>
+    <EffectComposer/>
   );
 };
