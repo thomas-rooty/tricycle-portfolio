@@ -11,7 +11,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/thomas-rooty/tricycle-portfolio">
-    <img src="public/assets/icons/tricycle.png" alt="Logo" width="80" height="80">
+    <img src="public/assets/icons/tricycle.png" alt="Logo" width="90" height="90">
   </a>
 
 <h3 align="center">3D Rendered Portfolio</h3>
