@@ -9,7 +9,7 @@ const Github = ({...props}) => {
 	const colors = useTexture({
 		map: 'octocat.png'
 	})
-	const {nodes, materials} = useSpline('https://prod.spline.design/zeG8cAAxEqM53SwF/scene.splinecode')
+	const {nodes, materials} = useSpline('https://prod.spline.design/Eh70YVB0Qk1ndz02/scene.splinecode')
 	return (
 		<>
 			<group {...props} dispose={null}>
