@@ -1,7 +1,7 @@
 import {useBox} from "@react-three/cannon";
 import React, {useRef} from "react";
 import McLever from "./assets/mcLever";
-import RedstoneOff from "./assets/redstoneOff";
+import {RedstoneOff, RedstoneOn} from "./assets/redstoneOff";
 import {useControls} from "../../../utils/useControls";
 import {useStore} from "../../zustore";
 import {useFrame} from "@react-three/fiber";
@@ -12,6 +12,8 @@ const ActivationZone = ({args, position}) => {
   // Use store
   const addObjectAsHoverable = useStore((state) => state.addObjectAsHoverable);
   const hoveredObject = useStore((state) => state.hoveredObject);
+  const setMcLeverPulled = useStore((state) => state.setMcLeverPulled);
+  const mcLeverPulled = useStore((state) => state.mcLeverPulled);
 
   // Physics ref
   const zone = useRef();
@@ -31,7 +33,12 @@ const ActivationZone = ({args, position}) => {
       // Handle the actions when interacted
       if (interact) {
         setTimeout(() => {
-          console.log("Pulled lever");
+          console.log("Activated lever");
+          if (mcLeverPulled) {
+            setMcLeverPulled(false);
+          } else {
+            setMcLeverPulled(true);
+          }
         }, 500);
       }
     }
@@ -58,6 +65,7 @@ const RedstoneWire = ({position, rotation}) => {
   return (
     <>
       <RedstoneOff position={position} rotation={rotation}/>
+      <RedstoneOn position={position} rotation={rotation}/>
     </>
   );
 }
@@ -80,6 +88,8 @@ const Projects = () => {
         <McLever/>
       </group>
       <RedstoneWire position={[6.1, 0, 7.5]} rotation={[0, Math.PI / -7, 0]}/>
+      <RedstoneWire position={[7.9, 0, 8.4]} rotation={[0, Math.PI / -7, 0]}/>
+      <RedstoneWire position={[9.7, 0, 9.3]} rotation={[0, Math.PI / -7, 0]}/>
     </>
   );
 };
