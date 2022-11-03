@@ -32,7 +32,7 @@ const Home = () => {
 
   return (
     <div className={styles.appContainer}>
-      <ErrorBoundary>
+      <ErrorBoundary fallback={<div>Something went wrong</div>}>
         <Head>
           <title>Thomas Caron - Ride to discover me!</title>
           <meta
