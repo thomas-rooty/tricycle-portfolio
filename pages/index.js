@@ -77,8 +77,8 @@ const Home = () => {
               <Skatepark/>
             <ErrorBoundary fallback={<Html center><h1>Something went wrong</h1></Html>}>
               <SocialIconsPads/>
-              <Signs/>
             </ErrorBoundary>
+              <Signs/>
               <RocketObject/>
               <Projects/>
           </Physics>
