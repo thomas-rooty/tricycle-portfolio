@@ -34,39 +34,39 @@ const Tricycle = () => {
 	const {nodes, materials} = useGLTF("/newTricycle.gltf");
 	return (
 		<group position={[0, -0.6, 0]} scale={[0.22, 0.22, 0.22]}>
-			<mesh geometry={nodes.Object_6.geometry} material={materials.Kids_Toy_TrikeBikeRedMat}>
+			<mesh castShadow receiveShadow geometry={nodes.Object_6.geometry} material={materials.Kids_Toy_TrikeBikeRedMat}>
 				<meshStandardMaterial color="#FF8368"/>
 			</mesh>
-			<mesh geometry={nodes.Object_7.geometry} material={materials.Kids_Toy_TrikebikeBlackPlasticMat}>
+			<mesh castShadow receiveShadow geometry={nodes.Object_7.geometry} material={materials.Kids_Toy_TrikebikeBlackPlasticMat}>
 				<meshStandardMaterial color="#464646"/>
 			</mesh>
-			<mesh geometry={nodes.Object_8.geometry} material={materials.Kids_Toy_TrikebikeBlackMat}>
+			<mesh castShadow receiveShadow geometry={nodes.Object_8.geometry} material={materials.Kids_Toy_TrikebikeBlackMat}>
 				<meshStandardMaterial color="#464646"/>
 			</mesh>
-			<mesh geometry={nodes.Object_9.geometry} material={materials.Kids_Toy_TrikebikeWhiteMat}>
+			<mesh castShadow receiveShadow geometry={nodes.Object_9.geometry} material={materials.Kids_Toy_TrikebikeWhiteMat}>
 				<meshStandardMaterial color="#ECECEC"/>
 			</mesh>
-			<mesh geometry={nodes.Object_10.geometry} material={materials.Kids_Toy_TrikebikeTyreMat}>
+			<mesh castShadow receiveShadow geometry={nodes.Object_10.geometry} material={materials.Kids_Toy_TrikebikeTyreMat}>
 				<meshStandardMaterial color="#464646"/>
 			</mesh>
 			<group ref={cockpit} position={pivotPosition} rotation={rotation}>
-				<mesh geometry={nodes.Cintre.geometry} material={materials.Kids_Toy_TrikebikeWhiteMat}
+				<mesh castShadow receiveShadow geometry={nodes.Cintre.geometry} material={materials.Kids_Toy_TrikebikeWhiteMat}
 				      position={[0, 7.96, 1.18]}>
 					<meshStandardMaterial color="#ECECEC"/>
 				</mesh>
-				<mesh geometry={nodes.Fourche.geometry} material={materials.Kids_Toy_TrikeBikeRedMat}
+				<mesh castShadow receiveShadow geometry={nodes.Fourche.geometry} material={materials.Kids_Toy_TrikeBikeRedMat}
 				      position={[0, 4.15, 2.5]}>
 					<meshStandardMaterial color="#FF8368"/>
 				</mesh>
-				<mesh geometry={nodes.Poignees.geometry} material={materials.Kids_Toy_TrikebikeBlackPlasticMat}
+				<mesh castShadow receiveShadow geometry={nodes.Poignees.geometry} material={materials.Kids_Toy_TrikebikeBlackPlasticMat}
 				      position={[-0.01, 8.77, 0.91]}>
 					<meshStandardMaterial color="#464646"/>
 				</mesh>
-				<mesh geometry={nodes.Jante_avant.geometry} material={materials.Kids_Toy_TrikebikeWhiteMat}
+				<mesh castShadow receiveShadow geometry={nodes.Jante_avant.geometry} material={materials.Kids_Toy_TrikebikeWhiteMat}
 				      position={[-0.01, 2.49, 3.17]}>
 					<meshStandardMaterial color="#ECECEC"/>
 				</mesh>
-				<mesh geometry={nodes.Pneu_avant.geometry} material={materials.Kids_Toy_TrikebikeTyreMat}
+				<mesh castShadow receiveShadow geometry={nodes.Pneu_avant.geometry} material={materials.Kids_Toy_TrikebikeTyreMat}
 				      position={[0.05, 2.53, 3.1]}>
 					<meshStandardMaterial color="#464646"/>
 				</mesh>
