@@ -78,19 +78,6 @@ const Stackoverflow = ({...props}) => {
 						scale={[1, 0.44, 1]}
 					/>
 				</group>
-				<group name="Stackoverflow" position={[-10.71, 108.62, 5.46]}>
-					<mesh
-						name="Main_Rectangle"
-						geometry={nodes.Main_Rectangle.geometry}
-						material={materials['Main_Rectangle Material']}
-						castShadow
-						receiveShadow
-						visible={false}
-						position={[0, 0, -27.28]}
-						rotation={[0, 0, 0]}
-						scale={[5, 5, 1.05]}
-					/>
-				</group>
 			</group>
 		</>
 	)
