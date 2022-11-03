@@ -8,7 +8,7 @@ const Signs = () => {
 		type: "Static",
 		args: [1, 10, 1],
 		position: [2, 0, -2],
-		rotation: [0, -0.3, 0],
+		rotation: [0, 0, 0],
 		userData: {
 			id: "sign_skateparksocial",
 		}
