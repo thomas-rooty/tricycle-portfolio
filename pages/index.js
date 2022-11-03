@@ -74,13 +74,13 @@ const Home = () => {
               angularVelocity={[0, 10, 0]}
               wheelRadius={0.3}
             />
-            <ErrorBoundary fallback={<Html center><h1>Something went wrong</h1></Html>}>
               <Skatepark/>
+            <ErrorBoundary fallback={<Html center><h1>Something went wrong</h1></Html>}>
               <SocialIconsPads/>
               <Signs/>
+            </ErrorBoundary>
               <RocketObject/>
               <Projects/>
-            </ErrorBoundary>
           </Physics>
         </Suspense>
       </Canvas>
