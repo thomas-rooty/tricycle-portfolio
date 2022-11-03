@@ -14,6 +14,7 @@ import Floor from '../components/floor/floor';
 import LandingPage from '../components/ui/landingpage/LandingPage';
 import Projects from '../components/zones/lightManagement/projects';
 import {useStore} from "../components/zustore";
+import {Html} from "@react-three/drei";
 import {ErrorBoundary} from 'react-error-boundary';
 
 const Home = () => {
@@ -73,7 +74,7 @@ const Home = () => {
               angularVelocity={[0, 10, 0]}
               wheelRadius={0.3}
             />
-            <ErrorBoundary fallback={<div>Something went wrong</div>}>
+            <ErrorBoundary fallback={<Html center><h1>Something went wrong</h1></Html>}>
               <Skatepark/>
               <SocialIconsPads/>
               <Signs/>
