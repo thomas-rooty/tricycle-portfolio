@@ -30,7 +30,7 @@ const RedstoneOn = (props) => {
 	);
 }
 
-const RedstoneOff = (props) => {
+const Redstone = (props) => {
 	// Lever state
 	const mcLeverPulled = useStore((state) => state.mcLeverPulled);
 	const redstoneOff = useRef();
@@ -53,7 +53,7 @@ const RedstoneOff = (props) => {
 	);
 }
 
-useGLTF.preload("/redstone_off.gltf");
-useGLTF.preload("/redstone_on.gltf");
+useGLTF.preload("/assets/redstone_off.gltf");
+useGLTF.preload("/assets/redstone_on.gltf");
 
-export { RedstoneOn, RedstoneOff };
+export { RedstoneOn, Redstone };

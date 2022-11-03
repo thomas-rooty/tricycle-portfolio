@@ -1,7 +1,8 @@
 import {useBox} from "@react-three/cannon";
 import React, {useRef} from "react";
-import McLever from "./assets/mcLever";
-import {RedstoneOff, RedstoneOn} from "./assets/redstoneOff";
+import Lever from "./assets/lever";
+import {Redstone, RedstoneOn} from "./assets/redstone";
+import {LampOff, LampOn} from "./assets/lamp";
 import {useControls} from "../../../utils/useControls";
 import {useStore} from "../../zustore";
 import {useFrame} from "@react-three/fiber";
@@ -64,10 +65,26 @@ const ActivationZone = ({args, position}) => {
 const RedstoneWire = ({position, rotation}) => {
   return (
     <>
-      <RedstoneOff position={position} rotation={rotation}/>
+      <Redstone position={position} rotation={rotation}/>
       <RedstoneOn position={position} rotation={rotation}/>
     </>
   );
+}
+
+const Lamp = ({position, rotation}) => {
+  const [lampRef] = useBox(() => ({
+    position: position,
+    rotation: rotation,
+    args: [2.5, 5, 2.5],
+    type: "Static",
+  }));
+
+  return (
+    <group ref={lampRef}>
+      <LampOff/>
+      <LampOn/>
+    </group>
+  )
 }
 
 const Projects = () => {
@@ -85,11 +102,12 @@ const Projects = () => {
     <>
       <group ref={leverRef}>
         <ActivationZone args={[5, 2, 5]} position={[0, 0, 1.5]}/>
-        <McLever/>
+        <Lever/>
       </group>
       <RedstoneWire position={[6.1, 0, 7.5]} rotation={[0, Math.PI / -7, 0]}/>
       <RedstoneWire position={[7.9, 0, 8.4]} rotation={[0, Math.PI / -7, 0]}/>
       <RedstoneWire position={[9.7, 0, 9.3]} rotation={[0, Math.PI / -7, 0]}/>
+      <Lamp position={[12, 0, 11.3]} rotation={[0, Math.PI / -7, 0]}/>
     </>
   );
 };

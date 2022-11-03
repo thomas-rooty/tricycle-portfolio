@@ -7,7 +7,7 @@ import { useGLTF } from "@react-three/drei";
 import {useStore} from "../../../zustore";
 import {useFrame} from "@react-three/fiber";
 
-const McLever = (props) => {
+const Lever = (props) => {
 	// Lever state
 	const mcLeverPulled = useStore((state) => state.mcLeverPulled);
 
@@ -52,4 +52,4 @@ const McLever = (props) => {
 
 useGLTF.preload("/assets/mc_lever.gltf");
 
-export default McLever;
+export default Lever;
