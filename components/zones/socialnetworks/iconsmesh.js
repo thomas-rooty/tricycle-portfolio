@@ -83,11 +83,6 @@ const Icons = () => {
 					userData={{id: "github"}}
 				/>
 			</group>
-			<group ref={stackoverflowRef}>
-				<Stackoverflow
-					userData={{id: "stackoverflow"}}
-				/>
-			</group>
 		</>
 	);
 };
