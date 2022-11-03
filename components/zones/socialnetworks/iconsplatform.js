@@ -91,13 +91,6 @@ const SocialIconsPads = () => {
 			/>
 			<Iconsplatform
 				args={[4, 0.01, 3]}
-				networkName="stackoverflow"
-				networkUrl="https://stackoverflow.com/users/15032117/rootkitty"
-				color={"82d3ff"}
-				position={[16.5, 0.01, 0.5]}
-			/>
-			<Iconsplatform
-				args={[4, 0.01, 3]}
 				networkName="github"
 				networkUrl="https://github.com/thomas-rooty/"
 				color={"82d3ff"}
