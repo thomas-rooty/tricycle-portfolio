@@ -66,7 +66,7 @@ const Home = () => {
             shadow-mapSize-height={1024}
             penumbra={1}
           />
-          <Physics broadphase='SAP' contactEquationRelaxation={4} friction={1e-3} allowSleep>
+          <Physics broadphase='SAP' contactEquationRelaxation={4} friction={1e-3} allowSleep={false}>
             <Floor rotation={[-Math.PI / 2, 0, 0]} userData={{id: 'floor'}}/>
             <Vehicle
               position={[0, 3, 0]}
