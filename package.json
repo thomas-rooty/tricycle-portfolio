@@ -22,6 +22,7 @@
     "postprocessing": "^6.26.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-error-boundary": "^3.1.4",
     "three": "^0.145.0",
     "zustand": "^4.0.0-rc.1"
   },
