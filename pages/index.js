@@ -2,7 +2,7 @@ import Head from 'next/head';
 import styles from '../styles/index.module.css';
 import Hovernotification from '../components/ui/hovernotification/hovernotification';
 import {Canvas} from '@react-three/fiber';
-import React, {Suspense} from 'react';
+import React, {Suspense, useEffect} from 'react';
 import Loader from '../components/ui/loadingpage/Loader';
 import {Physics, Debug} from '@react-three/cannon';
 import Vehicle from '../components/tricycle/vehicle';
@@ -12,10 +12,22 @@ import Signs from '../components/zones/signs/signs';
 import RocketObject from '../components/zones/rocket/rocketObject';
 import Floor from '../components/floor/floor';
 import LandingPage from '../components/ui/landingpage/LandingPage';
-import Projects from '../components/zones/projects/projects';
+import Projects from '../components/zones/lightManagement/projects';
+import {useStore} from "../components/zustore";
 
 const Home = () => {
-  console.log(process.env.ENVIRONMENT);
+  const [lightIntensity, setLightIntensity] = React.useState(0.4);
+  // Lever pulled state
+  const mcLeverPulled = useStore((state) => state.mcLeverPulled);
+
+  // If the lever is pulled, set the light intensity to 0.4, else set it to 0
+  useEffect(() => {
+    if (mcLeverPulled) {
+      setLightIntensity(0.4);
+    } else {
+      setLightIntensity(0);
+    }
+  }, [mcLeverPulled]);
 
   return (
     <div className={styles.appContainer}>
@@ -42,9 +54,16 @@ const Home = () => {
           <LandingPage/>
           <fog attach='fog' args={['#325a80', 10, 50]}/>
           <color attach='background' args={['#325a80']}/>
-          <ambientLight intensity={0.4}/>
-          <spotLight position={[10, 10, 10]} angle={0.4} intensity={0.5} castShadow penumbra={1}/>
-          <spotLight position={[50, 50, 50]} angle={0.4} intensity={0.5} castShadow penumbra={1}/>
+          <ambientLight intensity={lightIntensity}/>
+          <spotLight
+            position={[50, 50, 50]}
+            angle={0.4}
+            intensity={0.4}
+            castShadow
+            shadow-mapSize-width={1024}
+            shadow-mapSize-height={1024}
+            penumbra={1}
+          />
           <Physics broadphase='SAP' contactEquationRelaxation={4} friction={1e-3} allowSleep>
             <Floor rotation={[-Math.PI / 2, 0, 0]} userData={{id: 'floor'}}/>
             <Vehicle

@@ -87,6 +87,7 @@ const Stackoverflow = ({...props}) => {
 						receiveShadow
 						visible={false}
 						position={[0, 0, -27.28]}
+						rotation={[0, 0, 0]}
 						scale={[5, 5, 1.05]}
 					/>
 				</group>

@@ -35,7 +35,7 @@ export const useStore = create((set) => ({
 	},
 
 	// Store state of mcLever (pulled or not)
-	mcLeverPulled: false,
+	mcLeverPulled: true,
 	setMcLeverPulled: (pulled) => {
 		set(() => {
 			return {

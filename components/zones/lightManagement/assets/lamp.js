@@ -22,6 +22,7 @@ const LampOn = (props) => {
     <group {...props} scale={0.05} dispose={null}>
       <mesh
         ref={lampOn}
+        castShadow
         geometry={nodes["Redstone-lamp"].geometry}
         material={materials["Material.001"]}
         rotation={[Math.PI / 2, 0, 0]}
@@ -45,6 +46,7 @@ const LampOff = (props) => {
     <group {...props} scale={0.05} dispose={null}>
       <mesh
         ref={lampOff}
+        castShadow
         geometry={nodes["Redstone-lamp"].geometry}
         material={materials["Material.001"]}
         rotation={[Math.PI / 2, 0, 0]}
