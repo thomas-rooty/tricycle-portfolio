@@ -1,3 +1,5 @@
+// noinspection JSUnresolvedFunction
+
 import {useEffect, useRef, useMemo} from "react";
 import {extend, useFrame, useThree} from "@react-three/fiber";
 import {useRaycastVehicle} from "@react-three/cannon";
