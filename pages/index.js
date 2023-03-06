@@ -34,20 +34,14 @@ const Home = () => {
   return (
     <div className={styles.appContainer}>
       <Head>
-        <title>Thomas Caron - Ride to discover me!</title>
-        <meta
-          name='description'
-          content='Fullstack developer living in Versailles, France. Student at IPSSI, developer at Quietalis, freelancer.'
-        />
+        <title>Thomas Caron - Fullstack Developer | Quietalis | IPSSI</title>
+        <meta name='description' content='Thomas Caron is a fullstack developer living in Versailles, France. Learn more about his skills and experience at Quietalis and as a student at IPSSI.' />
         <meta property='og:image' content='/assets/icons/banner.png'/>
         <meta itemProp='image' content='/assets/icons/banner.png'/>
-        <meta itemProp='title' content='Thomas Caron - 3D Portfolio'/>
+        <meta itemProp='title' content='Thomas Caron - Fullstack Developer | Quietalis | IPSSI'/>
         <meta name='twitter:image' content='/assets/icons/banner.png'/>
-        <meta property='og:title' content='Thomas Caron - Ride to discover me!'/>
-        <meta
-          property='og:description'
-          content='Fullstack developer living in Versailles, France. Student at IPSSI, developer at Quietalis, freelancer.'
-        />
+        <meta property='og:title' content='Thomas Caron - Fullstack Developer | Quietalis | IPSSI'/>
+        <meta property='og:description' content='Learn more about Thomas Caron, a fullstack developer living in Versailles, France. Discover his skills and experience at Quietalis and as a student at IPSSI.'/>
         <link rel='icon' href='/favicon.ico'/>
       </Head>
       <Hovernotification/>
