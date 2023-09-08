@@ -2,6 +2,7 @@
   "extends": "next/core-web-vitals",
     "rules": {
         "react-hooks/rules-of-hooks": "off",
+        "react/no-unknown-property": "off",
         "react-hooks/exhaustive-deps": "off",
         "react/display-name": "off"
     }
